@@ -1,6 +1,8 @@
 import './../resources/styles/pages/App.css';
+import '../firebase'
 
 function App() {
+  getUsers();
   return (
     <div className="App">
       <header className="App-header">
