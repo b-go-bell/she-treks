@@ -1,5 +1,5 @@
 import './../resources/styles/pages/App.css';
-import '../firebase'
+import { getUsers } from '../firebase'
 
 function App() {
   getUsers();
