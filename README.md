@@ -41,5 +41,6 @@ Create a Firebase project through [Firebase Console](https://console.firebase.go
 
 4. **Run the application:**
     ```bash
+   $ cd app
    $ npm start
    ```
