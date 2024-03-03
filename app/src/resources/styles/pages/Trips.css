@@ -9,7 +9,8 @@
 
 .trips-container {
   height: 100vh;
-  max-width: 100vw;
+  width: 100vw;
+  background-color: var(--color-cream);
 }
 
 .trips-content {
@@ -21,45 +22,28 @@
 .trips-h1 {
   font-size: var(--font-size-page-title);
   font-family: var(--font-family);
-  color: var(--color-purple);
+  color: var(--color-gray);
   margin-left: 3vw;
 }
 
 .trips-h2 {
   font-size: var(--font-size-nav-title);
   font-family: var(--font-family);
-  color: var(--color-purple);
-  margin-left: 6vw;
+  color: var(--color-gray);
+  margin-left: 3.5vw;
+  margin-bottom: 1vh;
 }
 
-/* Button styling */
-button {
-    cursor: pointer;
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-  }
+.trips-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 1vw;
+}
 
-  /* Accept button styling */
-  .accept-button {
-    background-color: #93FFA4; /* Green */
-    color: white;
-  }
+.cards-section {
+  display: flex;
+  flex-direction: row;
+  margin-left: 4vw;
+}
 
-  .accept-button:hover {
-    background-color: #45a049; /* Darker green on hover */
-  }
-
-  /* Decline button styling */
-  .decline-button {
-    background-color: #F98080; /* Red */
-    color: white;
-  }
-
-  .decline-button:hover {
-    background-color: #d32f2f; /* Darker red on hover */
-  }

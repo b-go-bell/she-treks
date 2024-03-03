@@ -26,7 +26,7 @@
     font-size: var(--font-size-card-info);
     font-family: var(--font-family);
     font-style: italic;
-    margin-left: 10px;
+    margin-left: 1vw;
 }
 
 .card-img-container {
@@ -43,3 +43,41 @@
     height: auto;
     border-radius: .25em;
 }
+
+.trip-button-container {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Button styling */
+button {
+    cursor: pointer;
+    padding: 10px 20px;
+    /* margin: 5px; */
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Accept button styling */
+  .accept-button {
+    background-color: var(--color-olive); /* Green */
+    color: white;
+  }
+
+  .accept-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+
+  /* Decline button styling */
+  .decline-button {
+    background-color: var(--color-orange); /* Red */
+    color: white;
+  }
+
+  .decline-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+  }
