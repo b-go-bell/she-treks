@@ -1,3 +1,4 @@
+@import "./../../design-tokens/css-variables.scss";
 .container {
   font: var(font-regular);
 }

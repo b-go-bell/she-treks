@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './resources/styles/index.css';
-import Home from './pages/Home.jsx';
+import Home from './pages/home.jsx';
 import Profile from './pages/Profile.jsx';
 import Search from './pages/Search.jsx';
+import LoginSignup from './pages/LoginSignup.jsx';
+import Trips from './pages/Trips.jsx';
 import {
   BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
-import LoginSignup from './pages/LoginSignup.jsx';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -20,6 +21,7 @@ root.render(
       <Route path="/" element={<LoginSignup />} />
       <Route path="/home" element={<Home />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/trips" element={<Trips />} />
       <Route path="/search" element={<Search />} />
     </Routes>
   </BrowserRouter>

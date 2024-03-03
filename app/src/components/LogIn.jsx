@@ -66,6 +66,7 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
                   </button>
                 </div>
               </div>
+            <button className="x" onClick={handleCancel}/>
           <div/>
             <div className="AccountInfoInput">
               <div>

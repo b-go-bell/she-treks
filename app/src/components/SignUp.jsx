@@ -7,15 +7,26 @@ import 'firebase/auth';
 
 
 export const SignUpPage = ({handleCancel, switchToLogin}) => {
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
   const [show, setShow] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [icon, setIcon] = useState("/password-see.svg");
 
   const handleShow = () => {
     setShow(!show);
     setIcon(show ? "/password-see.svg" : "/password-hide.svg");
   };
+
+  const handleChange = (e) => {
+    setForm({
+        ...form,
+        [e.target.name] : e.target.value,
+    })
+  }
 
   const handleSignUp = async () => {
     try {
@@ -63,6 +74,7 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
                   </button>
                 </div>
               </div>
+              <button className="x" onClick={handleCancel}/>
           <div/>
             <div className="AccountInfoInput">
               <div>
@@ -74,13 +86,14 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
                     <input
                         className="TextInput"
                         placeholder="Enter your first name"
-                        value={email}
+                        value={firstName}
                         style={{
                         fontWeight: 400,
                         lineHeight: "normal",
                         paddingLeft: "13.35px",
                         }}
-                        onChange={(e) => setEmail(e.target.value)}
+                        name={firstName}
+                        onChange={handleChange}
                     ></input>
                     </div>
                     <div>
@@ -90,13 +103,14 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
                     <input
                         className="TextInput"
                         placeholder="Enter your last name"
-                        value={email}
+                        value={lastName}
                         style={{
                         fontWeight: 400,
                         lineHeight: "normal",
                         paddingLeft: "13.35px",
                         }}
-                        onChange={(e) => setEmail(e.target.value)}
+                        name={lastName}
+                        onChange={handleChange}
                     ></input>
                     </div>
                 </div>
@@ -129,7 +143,8 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
                       lineHeight: "normal",
                       paddingLeft: "13.35px",
                     }}
-                    onChange={(e) => setEmail(e.target.value)}
+                    name={email}
+                    onChange={handleChange}
                   ></input>
                 </div>
                 <div>
@@ -146,7 +161,8 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
                       paddingLeft: "13.35px",
                     }}
                     type={show ? "text" : "password"}
-                    onChange={(e) => setPassword(e.target.value)}
+                    name={password}
+                    onChange={handleChange}
                   ></input>
                   <img
                     className="transform scale-[40%] absolute left-[495px] top-[6px]"
