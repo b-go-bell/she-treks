@@ -61,7 +61,7 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
               <div className="Link">
                 <div>
                   Don’t have an account?{" "}
-                  <button className="button" onClick={switchToSignup}>
+                  <button className="button" onClick={switchToSignUp}>
                     Sign Up
                   </button>
                 </div>
