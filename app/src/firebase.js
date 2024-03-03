@@ -1,6 +1,8 @@
 import firebase from 'firebase/compat/app';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import 'firebase/compat/firestore';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyDfeBh0k8maLZhShHaxeZi2w91dYJtx8AE",
@@ -12,6 +14,7 @@ const firebaseConfig = {
 };
 
 const app = firebase.initializeApp(firebaseConfig);
+const auth = getAuth(app);
 const db = firebase.firestore();
 const storage = getStorage();
 
@@ -26,7 +29,7 @@ export async function getUsers() {
 
 export async function createUser({email, password, firstName, lastName}) {
   try{
-    const userCredential = await firebase.auth(app).createUserWithEmailAndPassword(email, password);
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const userId = userCredential.user.uid;
     // Log sign-up event
     firebase.analytics().logEvent('sign_up', { method: 'email' });
@@ -39,24 +42,26 @@ export async function createUser({email, password, firstName, lastName}) {
       firstName : firstName,
       lastName : lastName,
     });
+    return userId;
   } catch (error) {
     console.error('Error signing up:', error);
+    throw error;
   }
 }
 
 export async function authUser({email, password}) {
-  firebase.auth().signInWithEmailAndPassword(email, password)
+  signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         // User successfully logged in
         const user = userCredential.user;
         console.log("User logged in:", user);
+        return user;
     })
     .catch((error) => {
         // Handle errors
-        return false;
         console.error("Login error at firebase level");
+        throw error;
     });
-  return true;
 }
 
 export async function getTrails(bounds) {

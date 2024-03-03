@@ -23,8 +23,13 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
       toast.error("Please enter a valid email.");
       return;
     }
-    const response = authUser(email, password);
-    nav('/home');
+    try{
+        const response = authUser(email, password);
+        nav('/home');
+    } catch (error) {
+        toast.error("Not a valid email/password combination.");
+        console.error("error signing in with firebase.");
+    }
   };
 
 //   const handleGoogleSignIn = async () => {
