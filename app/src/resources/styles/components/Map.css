@@ -1,0 +1,11 @@
+.map-container {
+    width: 100vw;
+    height: 100vh;
+}
+
+.marker {
+    width: 15px;
+    height: 15px;
+    background-size: cover; /* Ensure the image covers the entire div */
+    background-position: center; /* Center the image */
+}
