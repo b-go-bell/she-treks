@@ -1,113 +1,57 @@
 @import "./../../design-tokens/css-variables.scss";
-/* .header {
-    text-align: left;
-    color: var(--color-purple);
-    padding: 10px 0px;
-    margin: 10 0px;
-    position: absolute;
-    z-index: 9999;
-    margin-left: 50px;
-}
-  
-.header .siteTitle {
-    margin-top: 0px;
-    margin-left: 0px;
-    font-size: var(--font-size-site-title);
-    font-family: var(--font-header);
-}
 
-.AccountInfoInput{
-    width: 100%;
-    height: 100%;
-    position: sticky;
-    background-color: var(--color-cream); 
-    color: var(--color-purple); 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    font: var(--font-size-input);
-    font-size: var(--font-form-size);
-}
-
-.button {
-    margin: 20px 0;
-    background-color: var(--color-purple);
-    color: var(--color-cream);
-    border: none;
-    padding: 10px 20px;
-    margin: 0 5px;
-    cursor: pointer;
-}
-
-.label {
-    align-items: left;
-    font-size: var(--font-size-input);
-}
-
-.Names {
-    display: flex;
-} */
-
-.LogInComponent {
-    background-color: var(--color-cream);
+.LogSignComponent {
+    background-color: var(--color-cream) 0.6;
     background-size: cover;
     background-position: center;
     position: absolute;
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     justify-content: center;
     align-items: center;
+    left: 50%;
+    right:50%;
+    color: var(--color-orange);
+    width: 40%;
   }
 
-.LogInContainer {
-    justify-content: center;
-}
-  
-  /* .LogInComponent:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.5);
-  } */
-  
-  .header .siteTitle {
+.siteTitle {
     font-size: var(--font-size-site-title);
     color: var(--color-purple);
-    text-align: center;
-    margin-top: 20px;
-    font-family: var(--font-header);
-  }
-  
-  .PageHeader {
-    text-align: center;
-    font-size: var(--font-size-page-title);
-    color: var(--color-purple);
-    margin-bottom: 1rem;
-    font-family: var(--font-regular);
-  }
+    text-align: left;
+    font-family: var(--font-family);
+    margin: 0px 0px;
+    margin-top: -10px;
+    margin-left: -40px;
+}
+
+.LogSignContainer {
+    height: 100vh;
+    justify-content: left;
+    display: flex;
+}
   
   .AccountInfoInput {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 251, 255, 0.8);
     padding: 2rem;
     border-radius: 8px;
-    font-family: var(--font-regular);
+    font-family: var(--font-family);
+    font-size: var(--font-size-input);
+    color: var(--color-purple);
+    justify-items: left;
   }
   
   .TextInput {
     width: 100%;
     padding: 0.5rem;
     margin-bottom: 1rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+    border-radius: 10%;
+    border: 1px var(--color-gray);
     font-size: var(--font-form-size);
-    font-family: var(--font-regular);
+    font-family: var(--font-family);
   }
   
-  .button {
+  /* .button {
     background-color: var(--color-purple);
     color: var(--color-cream);
     padding: 0.5rem 1rem;
@@ -116,21 +60,37 @@
     cursor: pointer;
     margin-top: 1rem;
     width: 100%;
-    font-family: var(--font-regular);
+    font-family: var(--font-family);
+  } */
+
+  .buttonDiscrete {
+    background-color: transparent;
+    color: var(--color-orange);
+    padding: 0rem 0rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    width: 100%;
+    font-family: var(--font-family);
+    justify-self: end;
   }
   
-  .button:hover {
-    background-color: darken(var(--color-purple), 10%);
+  /* .button:hover {
+    background-color: var(--color-blue);
+  } */
+
+  .buttonDiscrete:hover {
+    color: var(--color-orange);
   }
   
   .transform {
     cursor: pointer;
   }
   
-  .Link {
+  /* .Link {
     color: var(--color-cream);
     text-align: center;
-    font-family: var(--font-regular);
+    font-family: var(--font-family);
   }
   
   .Link button {
@@ -140,13 +100,13 @@
     border: none;
     cursor: pointer;
     text-decoration: underline;
-    font-family: var(--font-regular);
-  }
+    font-family: var(--font-family);
+  } */
   
   .x {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
+    position: fixed;
+    top: 0px;
+    right: 0px;
     background: none;
     border: none;
     font-size: 1.5rem;
@@ -155,9 +115,66 @@
     z-index: 999;
   }
   
-  /* Utility function to darken color */
-  /* function darken(color, percent) {
-    var f=parseInt(color.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,
-        R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF;
-    return "#" + (0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1);
-  } */
+  .PageHeader {
+    font-family: var(--font-family);
+    font-size: var(--font-size-page-title);
+    color: var(--color-orange);
+    text-align: center;
+  }
+
+  .PageSubHeader {
+    font-family: var(--font-family);
+    font-size: var(--font-size-input);
+    color: var(--color-orange);
+    text-align: center;
+  }
+  
+  
+  .TextInput {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: var(--font-family);
+    font-size: var(--font-size-input);
+    margin-bottom: 1rem;
+  }
+  
+  .label {
+
+    display: flex;
+    margin-bottom: .5rem;
+    color: var(--color-orange);
+  }
+    
+  .Names {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adjust the space between first name and last name inputs */
+  }
+  .Names .TextInput {
+    flex: 1;
+  }
+  
+  .btn {
+    font-family: var(--font-family);
+    font-size: var(--font-size-button);
+    /* padding: 10px 30px; */
+    margin: 0px 20px;
+    border: 1px solid var(--color-orange);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: color 0.3s;
+    width: 50%;
+    background-color: transparent;
+    color: var(--color-orange);
+    justify-content: center;
+    justify-self: center;
+  }
+  
+  .btn:hover {
+    background-color: transparent;
+    color: var(--color-blue);
+    border: 1px solid var(--color-blue);
+  }
+  

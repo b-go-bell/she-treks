@@ -4,6 +4,8 @@ import { toast, ToastContainer } from "react-toastify";
 import './../resources/styles/components/LogInSignUpComponents.css';
 import firebase from 'firebase/compat/app';
 import { useNavigate } from 'react-router-dom';
+import 'firebase/firestore';
+import 'firebase/analytics';
 import 'firebase/auth';
 
 
@@ -16,11 +18,11 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
     password: "",
   });
   const [show, setShow] = useState(false);
-  const [icon, setIcon] = useState("/password-see.svg");
+  const [icon, setIcon] = useState("./../resources/media/password-see.svg");
 
   const handleShow = () => {
     setShow(!show);
-    setIcon(show ? "/password-see.svg" : "/password-hide.svg");
+    setIcon(show ? "./../resources/media/password-see.svg" : "./../resources/media/password-hide.svg");
   };
 
   const handleChange = (e) => {
@@ -32,13 +34,13 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
 
   const handleSignUp = async () => {
     try {
-    //   var validRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    //   if (!email.match(validRegex)) {
-    //     toast.error("Please enter a valid email.");
-    //     return;
-    //   }
+      var validRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (!form.email.match(validRegex)) {
+        toast.error("Please enter a valid email.");
+        return;
+      }
       // Create user with email and password
-      const userCredential = await firebase.auth().createUserWithEmailAndPassword(form.email, form.password);
+      const userCredential = await firebase.auth(shetreks-app).createUserWithEmailAndPassword(form.email, form.password);
       const userId = userCredential.user.uid;
       // Log sign-up event
       firebase.analytics().logEvent('sign_up', { method: 'email' });
@@ -53,7 +55,7 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
     });
 
     console.log('User added to Firestore successfully!');
-    nav.push('/profile');
+    nav('/profile');
 
     } catch (error) {
       toast.error('Sign up with name, email, and password error');
@@ -75,10 +77,14 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
 
   return (
     /* Login */
-    <div className="SignUpComponent">
+    <>
+    <div className="header">
+            <div className="siteTitle">SheTreks</div>
+    </div>
+    <div className="LogSignComponent">
       <ToastContainer/>
       {/* Login Frame */}
-      <div className="flex flex-col items-center gap-[20px]">
+      <div className="LogSignContainer">
         {/* Login Content */}
         <div>
           <div className="PageHeader">
@@ -86,12 +92,14 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
               <div className="Link">
                 <div>
                  Already have an account?{" "}
-                  <button className="button" onClick={switchToLogin}>
+                  <div className="buttonDiscrete" onClick={switchToLogin}>
                     Log In
-                  </button>
+                  </div>
                 </div>
               </div>
-              <button className="x" onClick={handleCancel}/>
+              <button className="x" onClick={handleCancel}>
+                X
+            </button>
           <div/>
             <div className="AccountInfoInput">
               <div>
@@ -103,12 +111,7 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
                     <input
                         className="TextInput"
                         placeholder="Enter your first name"
-                        style={{
-                        fontWeight: 400,
-                        lineHeight: "normal",
-                        paddingLeft: "13.35px",
-                        }}
-                        name={form.firstName}
+                        name={'firstName'}
                         onChange={handleChange}
                     ></input>
                     </div>
@@ -119,32 +122,11 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
                     <input
                         className="TextInput"
                         placeholder="Enter your last name"
-                        style={{
-                        fontWeight: 400,
-                        lineHeight: "normal",
-                        paddingLeft: "13.35px",
-                        }}
-                        name={form.lastName}
+                        name={'lastName'}
                         onChange={handleChange}
                     ></input>
                     </div>
                 </div>
-                {/* <div>
-                  <label className="label">
-                    Where are you based?
-                  </label>
-                  <input
-                    className="TextInput"
-                    placeholder="Enter city and state"
-                    value={email}
-                    style={{
-                      fontWeight: 400,
-                      lineHeight: "normal",
-                      paddingLeft: "13.35px",
-                    }}
-                    onChange={(e) => setEmail(e.target.value)}
-                  ></input>
-                </div> */}
                 <div>
                   <label className="label">
                     Email
@@ -152,24 +134,19 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
                   <input
                     className="TextInput"
                     placeholder="Enter your email"
-                    style={{
-                      fontWeight: 400,
-                      lineHeight: "normal",
-                      paddingLeft: "13.35px",
-                    }}
-                    name={form.email}
+                    name={'email'}
                     onChange={handleChange}
                   ></input>
                 </div>
                 <div>
-                  <label>
+                  <label className="label">
                     Password
                   </label>
                   <input
                     className="TextInput"
                     placeholder="Enter a password"
                     type={show ? "text" : "password"}
-                    name={form.password}
+                    name={'password'}
                     onChange={handleChange}
                   ></input>
                   <img
@@ -180,12 +157,13 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
                   />
                 </div>
               </div>
-              <button onClick={handleSignUp}>Sign Up</button>
-              <button onClick={handleSignUpWithGoogle}>Sign Up with Google</button>
+              <div className="btn" onClick={handleSignUp}>register</div>
+             {/* <div className="btn" onClick={handleSignUpWithGoogle}>register through Google</div> */}
             </div>
           </div>
         </div>
       </div>
     </div>
+    </>
   );
 }

@@ -5,6 +5,8 @@ import './../resources/styles/components/LogInSignUpComponents.css';
 import { useNavigate } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 import 'firebase/auth';
+import 'firebase/firestore';
+import 'firebase/analytics';
 
 export const LogInPage = ({handleCancel, switchToSignUp}) =>{
   const nav = useNavigate();
@@ -19,11 +21,11 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
   };
 
   const handleLogin = async () => {
-    // var validRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    // if (!email.match(validRegex)) {
-    //   toast.error("Please enter a valid email.");
-    //   return;
-    // }
+    var validRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!email.match(validRegex)) {
+      toast.error("Please enter a valid email.");
+      return;
+    }
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
             // User successfully logged in
@@ -37,7 +39,7 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
             const errorMessage = error.message;
             console.error("Login error:", errorCode, errorMessage);
         });
-        nav.push('/home');
+        nav('/home');
   };
 
   const handleGoogleSignIn = async () => {
@@ -54,31 +56,30 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
 
   return (
     /* Login */
-    <div className="LogInComponent">
+    <>
+    <div className="header">
+            <div className="siteTitle">SheTreks</div>
+    </div>
+    <div className="LogSignComponent">
       <ToastContainer />
       {/* Login Frame */}
       <div>
         {/* Login Content */}
-        <header className="header">
-            <div className="siteTitle">SheTreks</div>
-        </header>
-        <div className="LogInContainer">
+        <div className="LogSignContainer">
           <div className="PageHeader">
             Log In
-              <div className="Link">
-                <div>
+                <div className="PageSubHeader">
                   Don’t have an account?{" "}
-                  <button className="button" onClick={switchToSignUp}>
+                  <div className="buttonDiscrete" onClick={switchToSignUp}>
                     Sign Up
-                  </button>
+                  </div>
                 </div>
-              </div>
-            <button className="x" onClick={handleCancel}/>
+            <button className="x" onClick={handleCancel}>X</button>
           <div/>
             <div className="AccountInfoInput">
               <div>
                 <div>
-                  <label >
+                  <label className="label">
                     Email
                   </label>
                   <input
@@ -89,7 +90,7 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
                   ></input>
                 </div>
                 <div>
-                  <label>
+                  <label className="label">
                     Password
                   </label>
                   <input
@@ -107,12 +108,13 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
                   />
                 </div>
               </div>
-              <button className="button" onClick={handleLogin}>Sign In with Email/Password</button>
-             <button className="button" onClick={handleGoogleSignIn}>Sign In with Google</button>
+              <div className="btn" onClick={handleLogin}>sign in</div>
+             {/* <div className="btn" onClick={handleGoogleSignIn}>sign in with Google</div> */}
             </div>
           </div>
         </div>
       </div>
     </div>
+    </>
   );
 }
