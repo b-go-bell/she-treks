@@ -30,6 +30,7 @@ export async function getUsers() {
 export async function createUser({email, password, firstName, lastName}) {
   try{
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    console.log(userCredential);
     const userId = userCredential.user.uid;
     // Log sign-up event
     firebase.analytics().logEvent('sign_up', { method: 'email' });

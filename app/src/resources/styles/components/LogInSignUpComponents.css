@@ -11,11 +11,10 @@
 .siteTitle {
     font-size: var(--font-size-site-title);
     color: var(--color-purple);
-    text-align: left;
+    text-align: center;
     font-family: var(--font-family);
-    margin: 0px 0px;
-    margin-top: -10px;
-    margin-left: -40px;
+
+
 }
 
 .LogSignContainer {
@@ -23,6 +22,8 @@
     justify-content: center;
     display: flex;
     width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
   .AccountInfoInput {
@@ -92,14 +93,42 @@
 
 
 
+.BUG {
+  font-family: var(--font-family);
+  font-size: var(--font-size-page-title);
+  color: var(--color-purple);
+  background: var(--color-cream);
+  width: 40vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4vh;
 
+}
+
+.btn {
+  font-family: var(--font-family);
+  font-size: var(--font-size-button);
+  padding: 10px;
+  border-radius: 5em;
+  cursor: pointer;
+  transition: color 0.3s;
+  width: 40%;
+  background-color: var(--color-purple);
+  color: var(--color-cream);
+  justify-content: center;
+  margin-top: 4vh;
+  text-align: center;
+
+}
 
   .PageHeader {
     font-family: var(--font-family);
     font-size: var(--font-size-page-title);
     color: var(--color-purple);
-    text-align: center;
-    padding: calc(4vw);
+    /* text-align: center;
+    padding: calc(4vw); */
     background: var(--color-cream);
     height: 100vh;
     width: 40vw;
@@ -137,19 +166,7 @@
     text-align: left;
   }
 
-  .btn {
-    font-family: var(--font-family);
-    font-size: var(--font-size-button);
-    padding: 10px;
-    border-radius: 5em;
-    cursor: pointer;
-    transition: color 0.3s;
-    width: 40%;
-    background-color: var(--color-purple);
-    color: var(--color-cream);
-    justify-content: center;
-    margin-top: 4vh;
-  }
+
 
   .btn:hover {
     background-color: transparent;

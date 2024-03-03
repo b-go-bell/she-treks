@@ -17,15 +17,21 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
     setIcon(show ? "./../resources/media/password-see.svg" : "./../resources/media/password-hide.svg");
   };
 
-  const handleLogin = async () => {
-    var validRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!email.match(validRegex)) {
-      toast.error("Please enter a valid email.");
-      return;
-    }
-    const response = authUser(email, password);
+
+  function handleSignUp() {
+    console.log("hi");
     nav('/search');
-  };
+  }
+
+  // const handleLogin = async () => {
+  //   var validRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  //   if (!email.match(validRegex)) {
+  //     toast.error("Please enter a valid email.");
+  //     return;
+  //   }
+  //   const response = authUser(email, password);
+  //   nav('/search');
+  // };
 
 //   const handleGoogleSignIn = async () => {
 //     try {
@@ -40,54 +46,58 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
 //   };
 
   return (
-    /* Login */
-    <>
-    <div className="LogSignComponent">
-      <div>
-        <div className="LogSignContainer">
-          <div className="PageHeader">
-            Login
-                {/* <div className="PageSubHeader">
-                  Don’t have an account?{" "}
-                  <div className="buttonDiscrete" onClick={switchToSignUp}>
-                    Sign Up
-                  </div>
-                </div>
-            <button className="x" onClick={handleCancel}>X</button> */}
-          <div/>
-            <div className="AccountInfoInput">
-              <div>
-                <div>
-                  <div className="label">
-                    Email
-                  </div>
-                  <input
-                    className="TextInput"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  ></input>
-                </div>
-                <div>
-                  <div className="label">
-                    Password
-                  </div>
-                  <input
-                    className="TextInput"
-                    placeholder="Enter your password"
-                    value={password}
-                    type={show ? "text" : "password"}
-                    onChange={(e) => setPassword(e.target.value)}
-                  ></input>
-                </div>
-              </div>
-              <div className="btn" onClick={handleLogin}>sign in</div>
-             {/* <div className="btn" onClick={handleGoogleSignIn}>sign in with Google</div> */}
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="BUG">
+      Coming Soon :)
+      <button className="btn" onClick={handleSignUp}>Start exploring</button>
     </div>
-    </>
+    /* Login */
+    // <>
+    // <div className="LogSignComponent">
+    //     <div className="LogSignContainer">
+    //       <div className="PageHeader">
+    //         Coming soon :)
+    //             {/* <div className="PageSubHeader">
+    //               Don’t have an account?{" "}
+    //               <div className="buttonDiscrete" onClick={switchToSignUp}>
+    //                 Sign Up
+    //               </div>
+    //             </div>
+    //         <button className="x" onClick={handleCancel}>X</button> */}
+    //       <div/>
+    //       <div className="btn" onClick={handleSignUp()}>Start exploring</div>
+    //         {/* <div className="AccountInfoInput">
+    //           <div>
+    //             <div>
+    //               <div className="label">
+    //                 Email
+    //               </div>
+    //               <input
+    //                 className="TextInput"
+    //                 placeholder="Enter your email"
+    //                 value={email}
+    //                 onChange={(e) => setEmail(e.target.value)}
+    //               ></input>
+    //             </div>
+    //             <div>
+    //               <div className="label">
+    //                 Password
+    //               </div>
+    //               <input
+    //                 className="TextInput"
+    //                 placeholder="Enter your password"
+    //                 value={password}
+    //                 type={show ? "text" : "password"}
+    //                 onChange={(e) => setPassword(e.target.value)}
+    //               ></input>
+    //             </div>
+    //           </div>
+    //           <div className="btn" onClick={handleLogin}>sign in</div>
+    //          {/* <div className="btn" onClick={handleGoogleSignIn}>sign in with Google</div> */}
+    //         {/* </div> */}
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
+    // </>
   );
 }
