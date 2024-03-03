@@ -42,8 +42,9 @@
   font-size: var(--font-size-input);
   color: var(--color-gray);
   padding: 5vw;
-  padding-left: 3.5vw;
-  padding-top: 4vh;
+  padding-top: 2vh;
+  /* padding-left: 3.5vw; */
+  /* padding-top: 4vh; */
 }
 
 .profile-other {
