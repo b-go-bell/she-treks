@@ -9,6 +9,9 @@ function Search() {
     <div className="search-page">
         {/* <NavBar/> */}
         <div className="inner-search">
+            <div className="sidebar">
+              hi
+            </div>
             <Map />
         </div>
     </div>
