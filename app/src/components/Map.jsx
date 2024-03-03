@@ -1,6 +1,8 @@
 import './../resources/styles/components/Map.css';
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import mapboxgl from 'mapbox-gl';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { getTrails } from './../firebase'
 import mark from './../resources/media/marker.png';
@@ -9,7 +11,7 @@ import mark from './../resources/media/marker.png';
 mapboxgl.accessToken =
     'pk.eyJ1IjoiYmdiZWxsIiwiYSI6ImNsbmV5bHlmczAzM24yc28yNm11cHY5ZXMifQ.KDr3mA_-tvflkGlXfI2-fQ';
 
-function Map() {
+function Map({updateTrailList}) {
     const mapContainer = useRef(null);
     const map = useRef(null);
     const [lat, setLat] = useState(34.05);
@@ -18,14 +20,15 @@ function Map() {
     const [zoom, setZoom] = useState(8);
     const [trails, setTrails] = useState([]);
 
-    useEffect(async () => {
-        if (map.current) return; // initialize map only once
+    useEffect(() => {
+        if (!map.current) { // initialize map only once
             map.current = new mapboxgl.Map({
-            container: mapContainer.current,
-            style: 'mapbox://styles/mapbox/outdoors-v12',
-            center: [lng, lat],
-            zoom: zoom
-        });
+                container: mapContainer.current,
+                style: 'mapbox://styles/mapbox/outdoors-v12',
+                center: [lng, lat],
+                zoom: zoom
+            });
+        }
 
         map.current.on('move', () => {
             setLng(map.current.getCenter().lng.toFixed(4));
@@ -35,14 +38,27 @@ function Map() {
 
         map.current.addControl(new mapboxgl.NavigationControl());
 
-        console.log(map.current.getBounds());
+        map.current.addControl(new MapboxGeocoder({
+            // Initialize the geocoder
+            accessToken: mapboxgl.accessToken, // Set the access token
+            mapboxgl: mapboxgl, // Set the mapbox-gl instance
+            marker: false // Do not use the default marker style
+          }), "top-left");
 
-        const promise = await getTrails(map.current.getBounds());
-        setTrails(promise);
+        // console.log(map.current.getBounds());
     }, []);
 
-    useEffect(() => {
+    const updateTrails = useCallback(async () => {
+        const promise = await getTrails(map.current.getBounds());
+        setTrails(promise);
+        updateTrailList(promise);
+    }, [lat, lng])
 
+    useEffect(() => {
+        updateTrails();
+    }, [updateTrails]);
+
+    useEffect(() => {
         trails.forEach((trail) => {
 
             let coords = [];
