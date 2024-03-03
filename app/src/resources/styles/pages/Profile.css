@@ -1,8 +1,8 @@
 @import "./../../design-tokens/css-variables.scss";
 
 .circular-image-container {
-    width: calc(14vw + 5vh); /* Adjust the size of the circular container as needed */
-    height: calc(14vw + 5vh);
+    min-width: calc(10vw + 5vh); /* Adjust the size of the circular container as needed */
+    height: calc(10vw + 5vh);
     overflow: hidden;
     border-radius: 50%;
     margin-top: 20px; /* Adjust the spacing as needed */
@@ -22,6 +22,7 @@
 .profile-info {
   display: flex;
   flex-direction: column;
+  width: 55vw;
 }
 
 .sub-profile-info {
@@ -40,7 +41,9 @@
   font-family: var(--font-family);
   font-size: var(--font-size-input);
   color: var(--color-gray);
+  padding: 5vw;
   padding-left: 3.5vw;
+  padding-top: 4vh;
 }
 
 .profile-other {
@@ -74,11 +77,11 @@
   .post-images-wrapper {
     margin: 8px;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 0.5em;
   }
 
   .post-image {
-    width: 200px; /* Adjust the size as needed */
-    height: 200px; /* Adjust the size as needed */
+    width: calc(100px + 10vw); /* Adjust the size as needed */
+    height: calc(100px + 10vw); /* Adjust the size as needed */
     object-fit: cover; /* Maintain aspect ratio and cover container */
   }

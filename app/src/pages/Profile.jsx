@@ -101,12 +101,12 @@ function Profile() {
                             <div className="profile-other">
                                 {user ? `${user.location}` : 'Loading...'}
                             </div>
+
                             <div className="profile-bio">
                                 {user ? `${user.bio}` : 'Loading...'}
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <div className='posts'>
