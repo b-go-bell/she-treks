@@ -40,7 +40,7 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
         return;
       }
       // Create user with email and password
-      const userCredential = await firebase.auth(shetreks-app).createUserWithEmailAndPassword(form.email, form.password);
+      const userCredential = await firebase.auth().createUserWithEmailAndPassword(form.email, form.password);
       const userId = userCredential.user.uid;
       // Log sign-up event
       firebase.analytics().logEvent('sign_up', { method: 'email' });
@@ -90,7 +90,7 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
           <div className="PageHeader">
             Sign Up
               <div className="Link">
-                <div>
+                <div className="PageSubHeader">
                  Already have an account?{" "}
                   <div className="buttonDiscrete" onClick={switchToLogin}>
                     Log In
