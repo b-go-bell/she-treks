@@ -7,7 +7,7 @@ import { getTripsByUserId, getUserById, getImage } from '../firebase'
 
 
 function Trips() {
-  const userId = "Wv4ozXlaxEVRrgPYUvQ65YJAhyl1";
+  const userId = "zrFxCjWEybZoFiNGCOBYQBWDLri1";
 
   const [invitedTrips, setInvitedTrips] = useState([]);
   const [acceptedTrips, setAcceptedTrips] = useState([]);

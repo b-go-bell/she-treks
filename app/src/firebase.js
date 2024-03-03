@@ -3,13 +3,13 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import 'firebase/compat/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDNK9F0zKZBLyJgKtHaRENnAaZXD0Y0aKo",
-    authDomain: "shetreks-app.firebaseapp.com",
-    projectId: "shetreks-app",
-    storageBucket: "shetreks-app.appspot.com",
-    messagingSenderId: "456150020543",
-    appId: "1:456150020543:web:9fcb050f46576c2a4c710a"
-}
+  apiKey: "AIzaSyDfeBh0k8maLZhShHaxeZi2w91dYJtx8AE",
+  authDomain: "she-treks-app.firebaseapp.com",
+  projectId: "she-treks-app",
+  storageBucket: "she-treks-app.appspot.com",
+  messagingSenderId: "651102088389",
+  appId: "1:651102088389:web:df3d889b5e7c72610654ac"
+};
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();

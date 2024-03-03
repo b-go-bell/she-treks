@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 function Profile() {
-    const userId = "Wv4ozXlaxEVRrgPYUvQ65YJAhyl1";
+    const userId = "uFHGRa7deaMg9Azg9Aq5QKujMEJ2";
 
     const [user, setUser] = useState();
     const [profileImageUrl, setProfileImageUrl] = useState();
@@ -31,7 +31,7 @@ function Profile() {
             }
         };
         fetchUserData();
-    }, [userId]);
+    }, [posts]);
 
     // given array of posts, fetches the first image in each post's images array to display thumbnail
     const fetchPostImageUrls = async (postsArray) => {
@@ -59,7 +59,7 @@ function Profile() {
     // called when the user uploads a new profile picture
     const handleFileChange = async (e) => {
         const file = e.target.files[0];
-
+    
         if (file) {
         try {
             // Upload the profile image and get the download URL to update the image on the page
@@ -90,8 +90,8 @@ function Profile() {
             />
             </div>
 
-            <h1>{user ?
-                `${user.firstName + " " + user.lastName}`
+            <h1>{user ? 
+                `${user.firstName + " " + user.lastName}` 
                 : 'Loading...'}
             </h1>
             <h3>
@@ -100,8 +100,8 @@ function Profile() {
                 `${user.location}` : 'Loading...'}
             </h3>
             <p>
-                {user ?
-                `${user.bio}`
+                {user ? 
+                `${user.bio}` 
                 : 'Loading...'}
             </p>
             <br></br>
@@ -124,7 +124,7 @@ function Profile() {
             ) : (
                 <p>No posts yet!</p>
             )}
-
+   
         </div>
     );
     }
