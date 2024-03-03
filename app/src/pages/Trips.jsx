@@ -12,6 +12,13 @@ function Trips() {
   const [invitedTrips, setInvitedTrips] = useState([]);
   const [acceptedTrips, setAcceptedTrips] = useState([]);
 
+  const [tripChange, setTripChange] = useState(false);
+
+  // Function to update childVariable
+  const handleTripChange = (newVar) => {
+    setTripChange(newVar);
+  };
+
   useEffect(() => {
     const fetchUserData = async () => {
         try {
@@ -51,7 +58,7 @@ function Trips() {
         }
     };
     fetchUserData();
-  }, []);
+  }, [tripChange]);
 
   function getInvited() {
     let invites = [];
@@ -66,7 +73,7 @@ function Trips() {
       invitedTrips.map((t) => (
         invites.push(
         <div className="trips-list">
-          <Trip tri={t} u={userId}/>
+          <Trip tri={t} u={userId} onVariableChange={handleTripChange}/>
         </div>
       )));
     }
@@ -86,14 +93,12 @@ function Trips() {
       acceptedTrips.map((t) => (
         accepts.push(
         <div className="trips-list">
-          <Trip tri={t} u={userId}/>
+          <Trip tri={t} u={userId} varChange={handleTripChange}/>
         </div>
       )));
     }
     return accepts;
   }
-
-
 
   return (
     <div className="trips-container">
@@ -109,25 +114,9 @@ function Trips() {
       <div className="cards-section">
         {getAccepted()}
       </div>
-      {/* create cards for each trip in acceptedTrips here */}
-      {/* {acceptedTrips.map((trip, index) => (
-        <div className="card" key={index}>
-          <div />
-          <div className="card-text">
-            <div className="card-title">
-              {trip.name}
-            </div>
-            <div className="card-info">
-              <img src={trip.profileImage} className="profile-pic-thumbnail" alt="Profile Thumbnail" />
-              <p>{`${trip.organizerDetails.firstName} ${trip.organizerDetails.lastName}`}</p>
-              <p>{dateToString(trip.date)}</p>
-            </div>
-          </div>
-        </div>
-      ))} */}
 
     </div>
-      </div>
+    </div>
 
   );
 }

@@ -3,7 +3,7 @@ import './../resources/styles/components/Activity.css';
 import { updateTripMembers } from './../firebase'
 
 
-function Trip(tri, userId) {
+function Trip({tri, userId, onVariableChange}) {
     const t = tri.tri;
 
     function dateToString(timestamp) {
@@ -12,9 +12,16 @@ function Trip(tri, userId) {
         return date.toLocaleString(undefined, options);
     }
 
-    function accept() {
-      await updateTripMembers(t.id, userId, 'accept');
+  const handleChange = (bool) => {
+    if(bool) {
+      updateTripMembers(t.id, userId, 'accept');
+    } else {
+      updateTripMembers(t.id, userId, 'decline');
     }
+    onVariableChange(bool); // Notify the parent about the change
+  };
+
+
 
     return(
         <div className="card">
@@ -29,8 +36,8 @@ function Trip(tri, userId) {
             <p>{dateToString(t.date)}</p>
           </div>
           <div className="trip-buttons-container">
-            <button className="decline-button" onClick={}>decline</button>
-            <button className="accept-button">accept</button>
+            <button className="decline-button" onClick={handleChange(false)}>decline</button>
+            <button className="accept-button" onClick={handleChange(true)}>accept</button>
           </div>
 
         </div>
