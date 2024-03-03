@@ -6,7 +6,7 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import NavBar from './../components/NavBar';
 
 function Profile() {
-    const userId = "uFHGRa7deaMg9Azg9Aq5QKujMEJ2";
+    const userId = "zrFxCjWEybZoFiNGCOBYQBWDLri1";
 
     const [user, setUser] = useState();
     const [profileImageUrl, setProfileImageUrl] = useState();
@@ -101,12 +101,13 @@ function Profile() {
                             <div className="profile-other">
                                 {user ? `${user.location}` : 'Loading...'}
                             </div>
-                            <div className="profile-bio">
-                                {user ? `${user.bio}` : 'Loading...'}
-                            </div>
+
+
                         </div>
                     </div>
-
+                    <div className="profile-bio">
+                                {user ? `${user.bio}` : 'Loading...'}
+                            </div>
                 </div>
 
                 <div className='posts'>
