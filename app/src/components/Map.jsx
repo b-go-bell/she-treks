@@ -54,7 +54,7 @@ function Map({updateTrailList}) {
         const promise = await getTrails(map.current.getBounds());
         setTrails(promise);
         updateTrailList(promise);
-    }, [lat, lng])
+    }, [lat, lng, zoom])
 
     useEffect(() => {
         updateTrails();
@@ -63,8 +63,6 @@ function Map({updateTrailList}) {
     useEffect(() => {
         console.log(trails);
         trails.forEach((trail, i) => {
-            console.log(i);
-
             let coords = [];
             console.log(trail);
             trail.trailCoordinates.forEach((geopoint) => {

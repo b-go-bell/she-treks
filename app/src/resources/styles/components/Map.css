@@ -1,8 +1,11 @@
 @import "./../../design-tokens/css-variables.scss";
 
 .map-container {
-    width: 65vw;
-    height: 100vh;
+    min-width: 60vw;
+    height: 84vh;
+    border-radius: 0.5em;
+    padding: calc(10px + 0.1vw + 0.1vh);
+    padding-top: calc(10px + 0.1vw + 0.1vh)
 }
 
 .marker {

@@ -4,19 +4,17 @@ import './../resources/styles/components/NavBar.css';
 
 function NavBar() {
   return (
-    <header className="navbar">
-        <h1 className="site-title">
-            <Link to="/">SheTreks</Link>
-        </h1>
-        <nav>
-        <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/search">Search</Link></li>
-            <li><Link to="/trips">Trips</Link></li>
-            <li><Link to="/profile">Profile</Link></li>
-        </ul>
-        </nav>
-    </header>
+    <div className="navbar">
+        <div>
+            <Link to="/" className="site-title">SheTreks</Link>
+        </div>
+        <div>
+          <Link to="/" className="site-nav">Home</Link>
+          <Link to="/search" className="site-nav">Search</Link>
+          <Link to="/trips" className="site-nav">Trips</Link>
+          <Link to="/profile" className="site-nav">Profile</Link>
+        </div>
+    </div>
   );
 }
 

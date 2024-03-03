@@ -1,6 +1,6 @@
 import './../resources/styles/pages/Search.css';
 import React, { useRef, useEffect, useState } from 'react';
-import { NavBar } from './../components/NavBar.jsx';
+import NavBar from './../components/NavBar.jsx'
 import Activity from './../components/Activity.jsx';
 import Map from './../components/Map.jsx';
 import { getUsers } from '../firebase'
@@ -23,8 +23,11 @@ function Search() {
       let acts = [];
 
       trails.map((t) => (
-        acts.push(<Activity act={t}/>)
-      ));
+        acts.push(
+        <div className="act-container">
+          <Activity act={t}/>
+        </div>
+      )));
 
       return(
         <div className="activities">
@@ -36,9 +39,9 @@ function Search() {
 
   return (
     <div className="search-page">
-        {/* <NavBar/> */}
+        <NavBar/>
         <div className="inner-search">
-              {getActivities()}
+            {getActivities()}
             <Map updateTrailList={handleChildVariableChange}/>
         </div>
     </div>

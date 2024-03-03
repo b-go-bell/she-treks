@@ -115,7 +115,13 @@ export async function setProfileImage(userId, file) {
  */
 export async function getImage(type, imgID) {
   try {
-    const folder = (type === "profile") ? "profile_images" : "post_images";
+    let folder = "post_images";
+    if (type === "profile") {
+      folder = "profile_images"
+    } else if(type === "activity") {
+      folder = "activity_images";
+    }
+
     const storageRef = ref(storage, `${folder}/${imgID}`);
     const url = await getDownloadURL(storageRef);
     return url;

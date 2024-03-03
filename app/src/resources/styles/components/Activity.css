@@ -2,12 +2,13 @@
 
 .card {
     display: flex;
+    flex-direction: column;
     width: 30vw;
-    height: 25vh;
     background-color: var(--color-cream);
     border: solid var(--color-gray);
     border-width: 2px;
     border-radius: .5em;
+    padding: calc(10px + 0.1vw + 0.1vh);
 }
 
 .card-text {
@@ -16,7 +17,7 @@
 }
 
 .card-title {
-    font-size: var(--font-size-card-title);
+    font-size: var(--font-size-page-title);
     font-family: var(--font-header);
     font-weight: 600;
 }
@@ -24,4 +25,21 @@
 .card-info {
     font-size: var(--font-size-card-info);
     font-family: var(--font-body);
+    font-style: italic;
+    margin-left: 10px;
+}
+
+.card-img-container {
+    display: flex;
+    justify-content: center;
+}
+
+.card-text {
+    margin: 2px;
+}
+
+.card-image {
+    width: 30vw;
+    height: auto;
+    border-radius: .25em;
 }
