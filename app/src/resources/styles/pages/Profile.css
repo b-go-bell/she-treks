@@ -12,3 +12,21 @@
     object-fit: cover;
     border-radius: 50%;
   }
+
+  .post-images-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .post-images-wrapper {
+    margin: 8px;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  
+  .post-image {
+    width: 200px; /* Adjust the size as needed */
+    height: 200px; /* Adjust the size as needed */
+    object-fit: cover; /* Maintain aspect ratio and cover container */
+  }
+  
