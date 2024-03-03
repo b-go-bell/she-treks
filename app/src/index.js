@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './resources/styles/index.css';
-import Home from './pages/Home.jsx';
 import Profile from './pages/Profile.jsx';
 import Search from './pages/Search.jsx';
 import LoginSignup from './pages/LoginSignup.jsx';
 import Trips from './pages/Trips.jsx';
+import TripPage from './pages/TripPage.jsx';
 import {
   BrowserRouter,
   Routes,
@@ -22,6 +22,7 @@ root.render(
       <Route path="/profile" element={<Profile />} />
       <Route path="/trips" element={<Trips />} />
       <Route path="/search" element={<Search />} />
+      <Route path="/trips/:tripId" element={<TripPage />} />
     </Routes>
   </BrowserRouter>
 );

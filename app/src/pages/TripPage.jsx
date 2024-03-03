@@ -6,7 +6,7 @@ import Trip from './../components/Trip.jsx';
 import { getTripsByUserId, getUserById, getImage } from '../firebase'
 
 
-function Trips() {
+function TripPage() {
   const userId = "zrFxCjWEybZoFiNGCOBYQBWDLri1";
 
   const [invitedTrips, setInvitedTrips] = useState([]);
@@ -117,4 +117,4 @@ function Trips() {
   );
 }
 
-export default Trips;
+export default TripPage;

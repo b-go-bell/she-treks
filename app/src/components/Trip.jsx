@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './../resources/styles/components/Activity.css';
-import { updateTripMembers } from './../firebase'
+import { useNavigate } from "react-router-dom";
 
 
-function Trip({tri, userId, onVariableChange}) {
+function Trip(tri) {
     const t = tri.tri;
 
     function dateToString(timestamp) {
@@ -12,19 +12,15 @@ function Trip({tri, userId, onVariableChange}) {
         return date.toLocaleString(undefined, options);
     }
 
-  const handleChange = (bool) => {
-    if(bool) {
-      updateTripMembers(t.id, userId, 'accept');
-    } else {
-      updateTripMembers(t.id, userId, 'decline');
+    const navigate = useNavigate();
+
+    function viewTrip() {
+      console.log(tri);
+      navigate(`/trips/${t.name}`);
     }
-    onVariableChange(bool); // Notify the parent about the change
-  };
-
-
 
     return(
-        <div className="card">
+        <div className="card" onClick={viewTrip}>
         <div className="card-text">
           <div className="card-title">
             {t.name}
@@ -36,8 +32,8 @@ function Trip({tri, userId, onVariableChange}) {
             <p>{dateToString(t.date)}</p>
           </div>
           <div className="trip-buttons-container">
-            <button className="decline-button" onClick={handleChange(false)}>decline</button>
-            <button className="accept-button" onClick={handleChange(true)}>accept</button>
+            <button className="decline-button">decline</button>
+            <button className="accept-button">accept</button>
           </div>
 
         </div>

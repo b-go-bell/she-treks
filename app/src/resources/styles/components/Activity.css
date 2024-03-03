@@ -11,6 +11,10 @@
     padding: calc(10px + 0.1vw + 0.1vh);
 }
 
+.card:hover {
+  cursor: pointer;
+}
+
 .card-text {
     display: flex;
     flex-direction: column;
