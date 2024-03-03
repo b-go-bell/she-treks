@@ -1,11 +1,64 @@
+@import "./../../design-tokens/css-variables.scss";
+
 .circular-image-container {
-    width: 200px; /* Adjust the size of the circular container as needed */
-    height: 200px;
+    width: calc(14vw + 5vh); /* Adjust the size of the circular container as needed */
+    height: calc(14vw + 5vh);
     overflow: hidden;
     border-radius: 50%;
     margin-top: 20px; /* Adjust the spacing as needed */
   }
-  
+
+.profile {
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--color-cream);
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-profile-info {
+  display: flex;
+  flex-direction: row;
+  margin: 2vw;
+  margin-left: 4vw;
+}
+
+.main-profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-bio {
+  font-family: var(--font-family);
+  font-size: var(--font-size-input);
+  color: var(--color-gray);
+  padding-left: 3.5vw;
+}
+
+.profile-other {
+  font-family: var(--font-family);
+  font-size: var(--font-size-input);
+  color: var(--color-blue);
+  padding-left: 3.5vw;
+  font-style: italic;
+}
+
+.username {
+  font-family: var(--font-family);
+  font-size: var(--font-size-page-title);
+  color: var(--color-gray);
+  padding-top: calc(2vw + 1vh);
+  padding-left: 3vw;
+}
+
   .circular-image {
     width: 100%;
     height: 100%;
@@ -17,16 +70,15 @@
     display: flex;
     flex-wrap: wrap;
   }
-  
+
   .post-images-wrapper {
     margin: 8px;
     overflow: hidden;
     border-radius: 8px;
   }
-  
+
   .post-image {
     width: 200px; /* Adjust the size as needed */
     height: 200px; /* Adjust the size as needed */
     object-fit: cover; /* Maintain aspect ratio and cover container */
   }
-  

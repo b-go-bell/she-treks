@@ -3,6 +3,7 @@ import './../resources/styles/pages/Profile.css';
 import { getUserById, getImage, setProfileImage, getPostsByUserId } from '../firebase'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import NavBar from './../components/NavBar';
 
 function Profile() {
     const userId = "uFHGRa7deaMg9Azg9Aq5QKujMEJ2";
@@ -23,7 +24,7 @@ function Profile() {
 
             setUser(userData);
             setProfileImageUrl(userProfileImage);
-            setPosts(userPosts);
+
             setPostImageUrls(imageUrls);
 
             } catch (error) {
@@ -59,7 +60,7 @@ function Profile() {
     // called when the user uploads a new profile picture
     const handleFileChange = async (e) => {
         const file = e.target.files[0];
-    
+
         if (file) {
         try {
             // Upload the profile image and get the download URL to update the image on the page
@@ -74,57 +75,61 @@ function Profile() {
     };
 
     return (
-        <div>
-            <div className="circular-image-container" onClick={handleImageClick}>
-            <input
-                type="file"
-                id="fileInput"
-                accept="image/*"
-                style={{ display: 'none' }}
-                onChange={handleFileChange}
-            />
-            <img
-                className="circular-image"
-                src={profileImageUrl || 'https://t3.ftcdn.net/jpg/05/16/27/58/360_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg'}
-                alt="User Profile"
-            />
-            </div>
-
-            <h1>{user ? 
-                `${user.firstName + " " + user.lastName}` 
-                : 'Loading...'}
-            </h1>
-            <h3>
-                <FontAwesomeIcon icon={faLocationDot} />
-                {user ?
-                `${user.location}` : 'Loading...'}
-            </h3>
-            <p>
-                {user ? 
-                `${user.bio}` 
-                : 'Loading...'}
-            </p>
-            <br></br>
-            <h2>Posts</h2>
-
-            {postImageUrls.length > 0 ? (
-                <div className="post-images-container">
-                {postImageUrls.map((imageUrl, index) => (
-                    <div key={index} className="post-images-wrapper">
-                    {imageUrl && (
-                        <img
-                        className="post-image"
-                        src={imageUrl} // Displaying the corresponding image URL
-                        alt={`Post ${index + 1}`}
+        <div className="profile">
+            <NavBar />
+            <div className="profile-container">
+                <div className="profile-info">
+                    <div className="sub-profile-info">
+                        <div className="circular-image-container" onClick={handleImageClick}>
+                        <input
+                            type="file"
+                            id="fileInput"
+                            accept="image/*"
+                            style={{ display: 'none' }}
+                            onChange={handleFileChange}
                         />
-                    )}
+                        <img
+                            className="circular-image"
+                            src={profileImageUrl || 'https://t3.ftcdn.net/jpg/05/16/27/58/360_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg'}
+                            alt="User Profile"
+                        />
+                        </div>
+                        <div className="main-user-info">
+                            <div className="username">
+                                {user ? `${user.firstName + " " + user.lastName}` : 'Loading...'}
+                            </div>
+                            <div className="profile-other">
+                                {user ? `${user.location}` : 'Loading...'}
+                            </div>
+                            <div className="profile-bio">
+                                {user ? `${user.bio}` : 'Loading...'}
+                            </div>
+                        </div>
                     </div>
-                ))}
+
                 </div>
-            ) : (
-                <p>No posts yet!</p>
-            )}
-   
+
+                <div className='posts'>
+                    <h2>Posts</h2>
+                    {postImageUrls.length > 0 ? (
+                        <div className="post-images-container">
+                        {postImageUrls.map((imageUrl, index) => (
+                            <div key={index} className="post-images-wrapper">
+                            {imageUrl && (
+                                <img
+                                className="post-image"
+                                src={imageUrl} // Displaying the corresponding image URL
+                                alt={`Post ${index + 1}`}
+                                />
+                            )}
+                            </div>
+                        ))}
+                        </div>
+                    ) : (
+                        <p>No posts yet!</p>
+                    )}
+                </div>
+            </div>
         </div>
     );
     }

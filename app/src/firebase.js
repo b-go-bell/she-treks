@@ -197,7 +197,7 @@ export async function getTripsByUserId(tripStatus, userId) {
 export async function updateTripMembers(tripId, userId, action) {
   try {
     const tripRef = db.collection('trips').doc(tripId);
-    
+
     // Use Firestore transaction to ensure atomic updates
     await db.runTransaction(async (transaction) => {
       const tripDoc = await transaction.get(tripRef);
@@ -217,7 +217,7 @@ export async function updateTripMembers(tripId, userId, action) {
           invitees: firebase.firestore.FieldValue.arrayRemove(userId),
           declined: firebase.firestore.FieldValue.arrayUnion(userId),
         });
-      } 
+      }
     });
 
     console.log('Trip members updated successfully.');

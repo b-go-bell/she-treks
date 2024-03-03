@@ -7,12 +7,12 @@ function Activity(act) {
 
     const [imgUrl, setImgUrl] = useState('');
 
-    useEffect(() => {
-        const getImg = async () => {
-            setImgUrl(await getImage("activity", a.images[0]));
-        }
-        getImg();
+    const getImg = async () => {
+        setImgUrl(await getImage("activity", a.images[0]));
+    }
 
+    useEffect(() => {
+        getImg();
     }, []);
 
 
