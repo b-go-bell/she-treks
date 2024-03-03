@@ -6,7 +6,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/auth';
 
 
-export const SignUpPage = (handleCancel, switchToLogin) => {
+export const SignUpPage = ({handleCancel, switchToLogin}) => {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

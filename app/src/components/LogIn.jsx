@@ -5,7 +5,7 @@ import './../resources/styles/components/LogInSignUpComponents.css';
 import firebase from 'firebase/compat/app';
 import 'firebase/auth';
 
-export const LogInPage = (handleCancel, switchToSignUp) =>{
+export const LogInPage = ({handleCancel, switchToSignUp}) =>{
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
