@@ -24,7 +24,9 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
       return;
     }
     try{
+        console.log("attempt to auth user: ", email);
         const response = authUser(email, password);
+        console.log("successful user add! ", reponse.toString());
         nav('/home');
     } catch (error) {
         toast.error("Not a valid email/password combination.");
