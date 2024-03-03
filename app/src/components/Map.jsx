@@ -62,7 +62,8 @@ function Map({updateTrailList}) {
 
     useEffect(() => {
         console.log(trails);
-        trails.forEach((trail) => {
+        trails.forEach((trail, i) => {
+            console.log(i);
 
             let coords = [];
             console.log(trail);
@@ -80,7 +81,7 @@ function Map({updateTrailList}) {
                     .setPopup(new mapboxgl.Popup().setHTML(`<p>Marker ${1}</p>`));
 
             map.current.on('load', () => {
-                map.current.addSource(trail.id, {
+                map.current.addSource(("path" + i), {
                 type: 'geojson',
                 data: {
                     type: 'Feature',
@@ -93,9 +94,9 @@ function Map({updateTrailList}) {
             });
 
             map.current.addLayer({
-                id: trail.name,
+                id: ("path" + i),
                 type: 'line',
-                source: trail.name,
+                source: ("path" + i),
                 layout: {
                     'line-join': 'round',
                     'line-cap': 'round',
