@@ -10,9 +10,6 @@ SheTreks is a web application designed to connect female outdoor enthusiasts, al
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
@@ -42,7 +39,7 @@ SheTreks is a web application designed to connect female outdoor enthusiasts, al
 
 Create a Firebase project through [Firebase Console](https://console.firebase.google.com/). Configure Firebase in your project.
 
-4. Run the application:
+4. **Run the application:**
     ```bash
    $ npm start
    ```
