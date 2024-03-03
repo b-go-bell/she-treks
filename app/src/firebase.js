@@ -22,4 +22,24 @@ export async function getUsers() {
   });
 }
 
+export async function getTrails(bounds) {
+  const collection = db.collection('activities');
+  let activities = collection.get().then((querySnapshot) => {
+    let arr = [];
+    querySnapshot.forEach((documentSnapshot) => {
+      const data = documentSnapshot.data();
+      arr.push(data);
+    });
+    return arr;
+  });
+
+  (await activities).forEach((activity) => {
+      console.log(activity.coordinates);
+      console.log(bounds);
+      // if(activity.coordinates[0] > bounds[1][0]) {
+
+      // }
+  });
+}
+
 
