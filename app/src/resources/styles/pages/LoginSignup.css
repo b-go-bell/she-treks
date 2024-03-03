@@ -1,5 +1,6 @@
 @import "./../../design-tokens/css-variables.scss";
-.container {
+
+/* .container {
   font: var(font-regular);
 }
 
@@ -20,9 +21,9 @@
 
 .button {
   margin: 20px 0;
-}
+} */
 
-.login {
+/* .login {
   background-color: var(--color-purple);
   color: var(--color-cream);
   border: none;
@@ -38,16 +39,15 @@
   padding: 10px 20px;
   margin: 0 5px;
   cursor: pointer;
-}
+} */
 
-.background-with-gradient {
+/* .background-with-gradient {
     background-image: url('./../../media/she-treks-stock-home.jpeg');
-    background-size: cover; /* Ensure the background image covers the entire element */
-    position: relative; /* Required for absolute positioning of the gradient layer */
+    background-size: cover; 
+    position: relative; 
 }
-  
 .gradient-overlay {
-    /* Position the gradient layer */
+    
     width: 50%;
     position: absolute;
     top: 0;
@@ -55,8 +55,97 @@
     bottom: 0;
     left: 0;
 
-    /* Set the background to a linear gradient from white to transparent */
+    
     background: linear-gradient(to right, var(--color-cream), rgba(255, 255, 255, 0));
 }
 
-/* .photo1 { background-image: url('/path-to-your-image-1.jpg'); } */
+.photo1 { background-image: url('/path-to-your-image-1.jpg'); } 
+*/
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-regular);
+}
+
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full height */
+  background-image: url('./../../media/she-treks-stock-home.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+.header {
+  text-align: center;
+  color: var(--color-cream);
+}
+
+.header h1 {
+  font-size: var(--font-size-site-title);
+  font-family: var(--font-header);
+}
+
+.header p {
+  font-size: var(--font-form-size);
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button .login, .button .signup {
+  font-family: var(--font-regular);
+  font-size: var(--font-form-size);
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button .login {
+  background-color: transparent;
+  color: var(--color-purple);
+  border: 1px solid var(--color-purple);
+}
+
+.button .signup {
+  background-color: var(--color-purple);
+  color: var(--color-cream);
+}
+
+.button .login:hover {
+  background-color: var(--color-purple);
+  color: var(--color-cream);
+}
+
+.button .signup:hover {
+  background-color: transparent;
+  color: var(--color-purple);
+  border: 1px solid var(--color-cream);
+}
+
+.background-with-gradient {
+  /* Assuming there's a gradient needed on top of the image */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+}
+
+.gradient-overlay {
+  /* Additional overlay if needed */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1); /* Light cream overlay */
+}

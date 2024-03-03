@@ -2,10 +2,12 @@
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import './../resources/styles/components/LogInSignUpComponents.css';
+import { useNavigate } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 import 'firebase/auth';
 
 export const LogInPage = ({handleCancel, switchToSignUp}) =>{
+  const nav = useNavigate();
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,12 +19,11 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
   };
 
   const handleLogin = async () => {
-    var validRegex =
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!email.match(validRegex)) {
-      toast.error("Please enter a valid email.");
-      return;
-    }
+    // var validRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    // if (!email.match(validRegex)) {
+    //   toast.error("Please enter a valid email.");
+    //   return;
+    // }
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
             // User successfully logged in
@@ -35,7 +36,9 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
             const errorMessage = error.message;
             console.error("Login error:", errorCode, errorMessage);
         });
+        nav.push('/home');
   };
+
   const handleGoogleSignIn = async () => {
     try {
       const provider = new firebase.auth.GoogleAuthProvider();
@@ -96,6 +99,7 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
                     className="transform scale-[40%] absolute left-[495px] top-[6px]"
                     src={icon}
                     onClick={handleShow}
+                    alt="see"
                   />
                 </div>
               </div>
