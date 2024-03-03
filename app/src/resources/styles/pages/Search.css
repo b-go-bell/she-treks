@@ -17,7 +17,11 @@
 .no-activities {
     min-width: 35vw;
     background-color: var(--color-cream);
+    font-family: var(--font-family);
+    font-size: var(--font-size-card-title);
     justify-content: center;
+    align-items: center;
+    padding-left: 2vw;
 }
 
 .activities {

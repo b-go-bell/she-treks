@@ -24,7 +24,7 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
       return;
     }
     const response = authUser(email, password);
-    nav('/home');
+    nav('/search');
   };
 
 //   const handleGoogleSignIn = async () => {
@@ -42,34 +42,25 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
   return (
     /* Login */
     <>
-    <div className="header">
-            <div className="siteTitle">SheTreks</div>
-    </div>
     <div className="LogSignComponent">
-      <ToastContainer 
-        closeOnClick
-        pauseOnHover
-      />
-      {/* Login Frame */}
       <div>
-        {/* Login Content */}
         <div className="LogSignContainer">
           <div className="PageHeader">
-            Log In
-                <div className="PageSubHeader">
+            Login
+                {/* <div className="PageSubHeader">
                   Don’t have an account?{" "}
                   <div className="buttonDiscrete" onClick={switchToSignUp}>
                     Sign Up
                   </div>
                 </div>
-            <button className="x" onClick={handleCancel}>X</button>
+            <button className="x" onClick={handleCancel}>X</button> */}
           <div/>
             <div className="AccountInfoInput">
               <div>
                 <div>
-                  <label className="label">
+                  <div className="label">
                     Email
-                  </label>
+                  </div>
                   <input
                     className="TextInput"
                     placeholder="Enter your email"
@@ -78,9 +69,9 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
                   ></input>
                 </div>
                 <div>
-                  <label className="label">
+                  <div className="label">
                     Password
-                  </label>
+                  </div>
                   <input
                     className="TextInput"
                     placeholder="Enter your password"
@@ -88,12 +79,6 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
                     type={show ? "text" : "password"}
                     onChange={(e) => setPassword(e.target.value)}
                   ></input>
-                  <img
-                    className="transform scale-[40%] absolute left-[495px] top-[6px]"
-                    src={icon}
-                    onClick={handleShow}
-                    alt="see"
-                  />
                 </div>
               </div>
               <div className="btn" onClick={handleLogin}>sign in</div>

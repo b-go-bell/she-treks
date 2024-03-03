@@ -11,25 +11,25 @@ const LoginSignup = () => {
 
   function showLog() {
     console.log("show login");
-    setShowSignup(false); 
-    setShowBase(false); 
-    setShowLogin(true); 
+    setShowSignup(false);
+    setShowBase(false);
+    setShowLogin(true);
   }
   function showSign() {
     console.log("show signup");
-    setShowLogin(false); 
-    setShowBase(false); 
-    setShowSignup(true); 
+    setShowLogin(false);
+    setShowBase(false);
+    setShowSignup(true);
   }
   function hideLog() {
     console.log("hide login");
-    setShowLogin(false); 
-    setShowBase(true); 
+    setShowLogin(false);
+    setShowBase(true);
   }
   function hideSign() {
     console.log("hide signup");
-    setShowSignup(false); 
-    setShowBase(true); 
+    setShowSignup(false);
+    setShowBase(true);
   }
   function switchSignupToLogin(){
     console.log("switch to login from signup");
@@ -46,7 +46,7 @@ const LoginSignup = () => {
     <div className="container">
         {showBase && (<div>
             <header className="header">
-                <div className="siteTitleL">SheTreks</div>
+                {!showLogin && !showSignup && <div className="siteTitleL">SheTreks</div> }
                 <p> connect. elevate. explore.</p>
             </header>
             <div className="button-container">

@@ -13,7 +13,7 @@ function Activity(act) {
 
     useEffect(() => {
         getImg();
-    }, []);
+    }, [act]);
 
 
 

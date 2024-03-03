@@ -16,7 +16,7 @@ function Search() {
     if(trails.length === 0) {
       return(
         <div className="no-activities">
-          NO ITEMS!
+          No activities matched your search! 
         </div>
       );
     } else {

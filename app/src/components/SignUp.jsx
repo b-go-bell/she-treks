@@ -65,22 +65,13 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
 
   return (
     /* Login */
-    <>
-    <div className="header">
-            <div className="siteTitle">SheTreks</div>
-    </div>
-    <div className="LogSignComponent">
-        <ToastContainer 
-            closeOnClick
-            pauseOnHover
-        />
-      {/* Login Frame */}
+
       <div className="LogSignContainer">
         {/* Login Content */}
         <div>
           <div className="PageHeader">
             Sign Up
-              <div className="Link">
+              {/* <div className="Link">
                 <div className="PageSubHeader">
                  Already have an account?{" "}
                   <div className="buttonDiscrete" onClick={switchToLogin}>
@@ -90,15 +81,15 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
               </div>
               <button className="x" onClick={handleCancel}>
                 X
-            </button>
+            </button> */}
           <div/>
             <div className="AccountInfoInput">
               <div>
                 <div className="Names">
                     <div>
-                    <label className="label">
+                    <div className="label">
                         First Name
-                    </label>
+                    </div>
                     <input
                         className="TextInput"
                         placeholder="Enter your first name"
@@ -107,9 +98,9 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
                     ></input>
                     </div>
                     <div>
-                    <label className="label">
+                    <div className="label">
                         Last Name
-                    </label>
+                    </div>
                     <input
                         className="TextInput"
                         placeholder="Enter your last name"
@@ -118,10 +109,10 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
                     ></input>
                     </div>
                 </div>
-                <div>
-                  <label className="label">
+                <div className="input-group">
+                  <div className="label">
                     Email
-                  </label>
+                  </div>
                   <input
                     className="TextInput"
                     placeholder="Enter your email"
@@ -129,10 +120,10 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
                     onChange={handleChange}
                   ></input>
                 </div>
-                <div>
-                  <label className="label">
+                <div className="input-group">
+                  <div className="label">
                     Password
-                  </label>
+                  </div>
                   <input
                     className="TextInput"
                     placeholder="Enter a password"
@@ -140,12 +131,7 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
                     name={'password'}
                     onChange={handleChange}
                   ></input>
-                  <img
-                    className="transform scale-[40%] absolute left-[495px] top-[6px]"
-                    src={icon}
-                    onClick={handleShow}
-                    alt="see"
-                  />
+
                 </div>
               </div>
               <div className="btn" onClick={handleSignUp}>register</div>
@@ -154,7 +140,5 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
           </div>
         </div>
       </div>
-    </div>
-    </>
   );
 }

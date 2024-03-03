@@ -43,11 +43,11 @@
 
 /* .background-with-gradient {
     background-image: url('./../../media/she-treks-stock-home.jpeg');
-    background-size: cover; 
-    position: relative; 
+    background-size: cover;
+    position: relative;
 }
 .gradient-overlay {
-    
+
     width: 50%;
     position: absolute;
     top: 0;
@@ -55,11 +55,11 @@
     bottom: 0;
     left: 0;
 
-    
+
     background: linear-gradient(to right, var(--color-cream), rgba(255, 255, 255, 0));
 }
 
-.photo1 { background-image: url('/path-to-your-image-1.jpg'); } 
+.photo1 { background-image: url('/path-to-your-image-1.jpg'); }
 */
 body, html {
   margin: 0;
@@ -108,7 +108,7 @@ body, html {
   height: 7%;
   display: inline-flex;
   justify-content: left;
-  margin-top: 430px;
+  margin-top: 460px;
   margin-left: 50px;
   position: absolute;
   z-index: 9999;
@@ -160,7 +160,7 @@ body, html {
 }
 
 .gradient-overlay {
-    
+
     width: 80%;
     position: absolute;
     top: 0;
@@ -168,6 +168,6 @@ body, html {
     bottom: 0;
     left: 0;
 
-    
+
     background: linear-gradient(to right, var(--color-cream) 0%, rgba(255, 251, 242, .8) 50%, rgba(255, 255, 255, 0) 100%);
 }
