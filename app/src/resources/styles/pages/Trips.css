@@ -1,0 +1,38 @@
+.profile-pic-thumbnail {
+    width: 30px; /* Set the desired width for the image */
+    height: 30px; /* Set the desired height for the image */
+    border-radius: 50%; /* Make the image round by setting border-radius to 50% */
+    margin-right: 10px; /* Adjust the margin for spacing between image and text */
+}
+
+/* Button styling */
+button {
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Accept button styling */
+  .accept-button {
+    background-color: #93FFA4; /* Green */
+    color: white;
+  }
+  
+  .accept-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  
+  /* Decline button styling */
+  .decline-button {
+    background-color: #F98080; /* Red */
+    color: white;
+  }
+  
+  .decline-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+  }

@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 function Profile() {
+    const userId = "Wv4ozXlaxEVRrgPYUvQ65YJAhyl1";
+
     const [user, setUser] = useState();
     const [profileImageUrl, setProfileImageUrl] = useState();
     const [posts, setPosts] = useState([]);
@@ -14,9 +16,9 @@ function Profile() {
         const fetchUserData = async () => {
             try {
             // get user data from Firebase and Storage
-            const userData = await getUserById("Wv4ozXlaxEVRrgPYUvQ65YJAhyl1");
-            const userProfileImage = await getImage("profile", "Wv4ozXlaxEVRrgPYUvQ65YJAhyl1");
-            const userPosts = await getPostsByUserId("Wv4ozXlaxEVRrgPYUvQ65YJAhyl1");
+            const userData = await getUserById(userId);
+            const userProfileImage = await getImage("profile", userId);
+            const userPosts = await getPostsByUserId(userId);
             const imageUrls = await fetchPostImageUrls(userPosts);
 
             setUser(userData);
@@ -61,8 +63,8 @@ function Profile() {
         if (file) {
         try {
             // Upload the profile image and get the download URL to update the image on the page
-            await setProfileImage("Wv4ozXlaxEVRrgPYUvQ65YJAhyl1", file);
-            const downloadUrl = await getImage("profile", "Wv4ozXlaxEVRrgPYUvQ65YJAhyl1");
+            await setProfileImage(userId, file);
+            const downloadUrl = await getImage("profile", userId);
             setProfileImageUrl(downloadUrl);
 
         } catch (error) {
@@ -97,6 +99,11 @@ function Profile() {
                 {user ?
                 `${user.location}` : 'Loading...'}
             </h3>
+            <p>
+                {user ? 
+                `${user.bio}` 
+                : 'Loading...'}
+            </p>
             <br></br>
             <h2>Posts</h2>
 
@@ -115,7 +122,7 @@ function Profile() {
                 ))}
                 </div>
             ) : (
-                <p>Loading...</p>
+                <p>No posts yet!</p>
             )}
    
         </div>
