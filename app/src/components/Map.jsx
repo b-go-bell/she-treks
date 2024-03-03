@@ -93,9 +93,9 @@ function Map({updateTrailList}) {
             });
 
             map.current.addLayer({
-                id: trail.id,
+                id: trail.name,
                 type: 'line',
-                source: trail.id,
+                source: trail.name,
                 layout: {
                     'line-join': 'round',
                     'line-cap': 'round',
