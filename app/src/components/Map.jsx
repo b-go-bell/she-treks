@@ -3,6 +3,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { getTrails } from './../firebase'
+import mark from './../resources/media/marker.png';
 
 
 mapboxgl.accessToken =
@@ -15,12 +16,9 @@ function Map() {
     const [lng, setLng] = useState(-118.24);
 
     const [zoom, setZoom] = useState(8);
-
     const [trails, setTrails] = useState([]);
 
-    const [trailCoordinates, setTrailCoordinates] = useState([]);
-
-    useEffect(() => {
+    useEffect(async () => {
         if (map.current) return; // initialize map only once
             map.current = new mapboxgl.Map({
             container: mapContainer.current,
@@ -39,50 +37,63 @@ function Map() {
 
         console.log(map.current.getBounds());
 
-        setTrails(getTrails(map.current.getBounds()));
+        const promise = await getTrails(map.current.getBounds());
+        setTrails(promise);
+    }, []);
 
-        // pathCoordinates.forEach((coord, index) => {
-        //     new mapboxgl.Marker()
-        //       .setLngLat(coord)
-        //       .addTo(map.current)
-        //       .setPopup(new mapboxgl.Popup().setHTML(`<p>Marker ${index + 1}</p>`));
-        //   });
+    useEffect(() => {
 
-        // Add a path line
-//   map.current.on('load', () => {
-//     map.current.addSource('path', {
-//       type: 'geojson',
-//       data: {
-//         type: 'Feature',
-//         properties: {},
-//         geometry: {
-//           type: 'LineString',
-//           coordinates: pathCoordinates,
-//         },
-//       },
-//     });
+        trails.forEach((trail) => {
 
-//     map.current.addLayer({
-//       id: 'path',
-//       type: 'line',
-//       source: 'path',
-//       layout: {
-//         'line-join': 'round',
-//         'line-cap': 'round',
-//       },
-//       paint: {
-//         'line-color': 'blue',
-//         'line-width': 3,
-//       },
-//     });
-//   });
+            let coords = [];
+            trail.trailCoordinates.forEach((geopoint) => {
+                const lnglat = [geopoint._long, geopoint._lat];
+                coords.push(lnglat);
+            });
+
+            const customMarker = document.createElement('div');
+            customMarker.className = "marker";
+            customMarker.style.backgroundImage = `url(${mark})`;
+            new mapboxgl.Marker(customMarker)
+                    .setLngLat(coords[0])
+                    .addTo(map.current)
+                    .setPopup(new mapboxgl.Popup().setHTML(`<p>Marker ${1}</p>`));
+
+            map.current.on('load', () => {
+                map.current.addSource('path', {
+                type: 'geojson',
+                data: {
+                    type: 'Feature',
+                    properties: {},
+                    geometry: {
+                    type: 'LineString',
+                    coordinates: coords,
+                    },
+                },
+            });
+
+            map.current.addLayer({
+                id: 'path',
+                type: 'line',
+                source: 'path',
+                layout: {
+                    'line-join': 'round',
+                    'line-cap': 'round',
+                },
+                paint: {
+                    'line-color': '#5E2EE6',
+                    'line-width': 3,
+                },
+            });
+        });
     });
+    }, [trails]);
 
-  return (
+    return (
     <div>
         <div ref={mapContainer} className="map-container"/>
     </div>
-  );
+    );
 }
 
 export default Map;

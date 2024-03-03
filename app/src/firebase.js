@@ -35,13 +35,23 @@ export async function getTrails(bounds) {
     return arr;
   });
 
+  let trails = [];
   (await activities).forEach((activity) => {
-      console.log(activity.coordinates);
-      console.log(bounds);
-      // if(activity.coordinates[0] > bounds[1][0]) {
+      const lat = activity.coordinates._lat;
+      const lon = activity.coordinates._long;
 
-      // }
+      const bottom_lat = bounds._sw.lat;
+      const top_lat = bounds._ne.lat;
+      const left_lon = bounds._sw.lng;
+      const right_lon = bounds._ne.lng;
+
+      //console.log(lat, lon, bottom_lat, top_lat, left_lon, right_lon);
+
+      if(lat > bottom_lat && lat < top_lat && lon > left_lon && lon < right_lon) {
+        trails.push(activity);
+      }
   });
+  return trails;
 }
 
 
