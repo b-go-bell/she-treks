@@ -1,18 +1,25 @@
 @import "./../../design-tokens/css-variables.scss";
 
 .LogSignComponent {
-    background-color: var(--color-cream) 0.6;
+    background: rgba(255, 251, 242, 0.6);;
     background-size: cover;
     background-position: center;
     position: absolute;
-    /* height: 100vh; */
-    display: flex;
+    height: 60%;
+    top:10%;
+    width: 40%;
     justify-content: center;
     align-items: center;
-    left: 50%;
-    right:50%;
+    left: 30%;
+    right:30%;
     color: var(--color-orange);
-    width: 40%;
+    width: 50%;
+    margin-top: 10%;
+    margin-bottom: 20%;
+    z-index:5;
+    border-radius: 15%;
+    display: flexbox;
+    padding: 10px;
   }
 
 .siteTitle {
@@ -27,12 +34,13 @@
 
 .LogSignContainer {
     height: 100vh;
-    justify-content: left;
+    justify-content: center;
     display: flex;
+    width: 100%;
 }
   
   .AccountInfoInput {
-    background: rgba(255, 251, 255, 0.8);
+    /* background: rgba(255, 251, 255, 0.8); */
     padding: 2rem;
     border-radius: 8px;
     font-family: var(--font-family);
@@ -103,16 +111,30 @@
     font-family: var(--font-family);
   } */
   
-  .x {
+
+  .Toastify__toast-container {
     position: fixed;
-    top: 0px;
-    right: 0px;
+    top: 2rem; /* Distance from the bottom */
+    right: 1rem; /* Distance from the right */
+    z-index: 9999; /* Make sure it's above other elements */
+
+  }
+
+  .Toastify__toast-body .Toastify__icon {
+    color: var(--color-orange);
+    background-color: transparent;
+    font-size: 5px; /* Adjust the size as needed */
+  }
+
+  .x {
+    position: relative;
     background: none;
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--color-orange);
     z-index: 999;
+    
   }
   
   .PageHeader {
@@ -120,6 +142,7 @@
     font-size: var(--font-size-page-title);
     color: var(--color-orange);
     text-align: center;
+    z-index: 99;
   }
 
   .PageSubHeader {

@@ -3,10 +3,7 @@ import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import './../resources/styles/components/LogInSignUpComponents.css';
 import { useNavigate } from 'react-router-dom';
-import firebase from 'firebase/compat/app';
-import 'firebase/auth';
-import 'firebase/firestore';
-import 'firebase/analytics';
+import { authUser } from '../firebase'
 
 export const LogInPage = ({handleCancel, switchToSignUp}) =>{
   const nav = useNavigate();
@@ -26,33 +23,21 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
       toast.error("Please enter a valid email.");
       return;
     }
-    firebase.auth().signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            // User successfully logged in
-            const user = userCredential.user;
-            console.log("User logged in:", user);
-        })
-        .catch((error) => {
-            // Handle errors
-            toast.error("Enter a valid email and password.");
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.error("Login error:", errorCode, errorMessage);
-        });
-        nav('/home');
+    const response = authUser(email, password);
+    nav('/home');
   };
 
-  const handleGoogleSignIn = async () => {
-    try {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      await firebase.auth().signInWithPopup(provider);
-      console.log('User signed in with Google successfully!');
-      // Redirect or perform any other action after sign-in
-    } catch (error) {
-        toast.error("Google sign in erred.");
-      console.error('Error signing in with Google:', error);
-    }
-  };
+//   const handleGoogleSignIn = async () => {
+//     try {
+//       const provider = new firebase.auth.GoogleAuthProvider();
+//       await firebase.auth().signInWithPopup(provider);
+//       console.log('User signed in with Google successfully!');
+//       // Redirect or perform any other action after sign-in
+//     } catch (error) {
+//         toast.error("Google sign in erred.");
+//       console.error('Error signing in with Google:', error);
+//     }
+//   };
 
   return (
     /* Login */
@@ -61,7 +46,10 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
             <div className="siteTitle">SheTreks</div>
     </div>
     <div className="LogSignComponent">
-      <ToastContainer />
+      <ToastContainer 
+        closeOnClick
+        pauseOnHover
+      />
       {/* Login Frame */}
       <div>
         {/* Login Content */}

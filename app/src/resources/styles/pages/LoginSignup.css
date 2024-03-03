@@ -70,7 +70,7 @@ body, html {
 
 .container {
   display: flex;
-  position: relative;
+  position: fixed;
   width: 100%;
   left: 20;
   height: 100vh; /* Full height */

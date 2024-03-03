@@ -4,9 +4,10 @@ import { toast, ToastContainer } from "react-toastify";
 import './../resources/styles/components/LogInSignUpComponents.css';
 import firebase from 'firebase/compat/app';
 import { useNavigate } from 'react-router-dom';
-import 'firebase/firestore';
-import 'firebase/analytics';
-import 'firebase/auth';
+import { createUser } from '../firebase'
+// import 'firebase/firestore';
+// import 'firebase/analytics';
+// import 'firebase/auth';
 
 
 export const SignUpPage = ({handleCancel, switchToLogin}) => {
@@ -40,20 +41,7 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
         return;
       }
       // Create user with email and password
-      const userCredential = await firebase.auth().createUserWithEmailAndPassword(form.email, form.password);
-      const userId = userCredential.user.uid;
-      // Log sign-up event
-      firebase.analytics().logEvent('sign_up', { method: 'email' });
-
-      console.log('User signed up successfully!');
-
-      const usersCollection = firebase.firestore().collection('users');
-    await usersCollection.doc(userId).set({
-      email: form.email,
-      firstName : form.firstName,
-      lastName : form.lastName,
-    });
-
+      const response = createUser(form.email, form.password, form.firstName, form.lastName);
     console.log('User added to Firestore successfully!');
     nav('/profile');
 
@@ -63,17 +51,17 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
     }
   };
 
-  const handleSignUpWithGoogle = async () => {
-    try {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      await firebase.auth().signInWithPopup(provider);
-      firebase.analytics().logEvent('sign_up', { method: 'google' });
-      console.log('User signed up with Google successfully!');
-    } catch (error) {
-        toast.error('Sign up with google error');
-      console.error('Error signing up with Google:', error);
-    }
-  };
+//   const handleSignUpWithGoogle = async () => {
+//     try {
+//       const provider = new firebase.auth.GoogleAuthProvider();
+//       await firebase.auth().signInWithPopup(provider);
+//       firebase.analytics().logEvent('sign_up', { method: 'google' });
+//       console.log('User signed up with Google successfully!');
+//     } catch (error) {
+//         toast.error('Sign up with google error');
+//       console.error('Error signing up with Google:', error);
+//     }
+//   };
 
   return (
     /* Login */
@@ -82,7 +70,10 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
             <div className="siteTitle">SheTreks</div>
     </div>
     <div className="LogSignComponent">
-      <ToastContainer/>
+        <ToastContainer 
+            closeOnClick
+            pauseOnHover
+        />
       {/* Login Frame */}
       <div className="LogSignContainer">
         {/* Login Content */}
