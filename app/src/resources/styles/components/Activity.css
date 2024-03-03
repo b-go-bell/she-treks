@@ -17,14 +17,14 @@
 }
 
 .card-title {
-    font-size: var(--font-size-page-title);
-    font-family: var(--font-header);
+    font-size: var(--font-size-card-title);
+    font-family: var(--font-family);
     font-weight: 600;
 }
 
 .card-info {
     font-size: var(--font-size-card-info);
-    font-family: var(--font-body);
+    font-family: var(--font-family);
     font-style: italic;
     margin-left: 10px;
 }
