@@ -115,7 +115,13 @@ export async function setProfileImage(userId, file) {
  */
 export async function getImage(type, imgID) {
   try {
-    const folder = (type === "profile") ? "profile_images" : "post_images";
+    let folder = "post_images";
+    if (type === "profile") {
+      folder = "profile_images"
+    } else if(type === "activity") {
+      folder = "activity_images";
+    }
+
     const storageRef = ref(storage, `${folder}/${imgID}`);
     const url = await getDownloadURL(storageRef);
     return url;
@@ -141,12 +147,39 @@ export async function getPostsByUserId(userId) {
 
     // Check if the user has any posts
     if (postsQuery.empty) {
-      throw new Error('No posts found for the specified user.');
+      return [];
     }
 
     // Extract and return the posts data
     const postsData = postsQuery.docs.map(postDoc => postDoc.data());
     return postsData;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+
+/**
+ * Retrieve trips data for a specific user based on trip status.
+ *
+ * @param {string} tripStatus - The status of the trips to retrieve (e.g., 'invitees', 'accepted').
+ * @param {string} userId - The user ID to check in the tripStatus array field.
+ * @returns {Promise<Array>} An array of trip data for the specified user and trip status.
+ * @throws {Error} Throws an error if there is an issue with the Firestore query or retrieval.
+ */
+export async function getTripsByUserId(tripStatus, userId) {
+  try {
+    // Retrieve posts from the "trips" collection where the tripStatus field's array contains the user
+    const tripsCollection = db.collection('trips');
+    const tripsQuery = await tripsCollection.where(tripStatus, 'array-contains', userId).get();
+
+    if (tripsQuery.empty) {
+      return [];
+    }
+
+    // Extract and return the trips data
+    const tripsData = tripsQuery.docs.map(tripDoc => tripDoc.data());
+    return tripsData;
   } catch (error) {
     throw new Error(error.message);
   }

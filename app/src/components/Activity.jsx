@@ -1,18 +1,37 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './../resources/styles/components/Activity.css';
+import { getImage } from './../firebase'
 
 function Activity(act) {
     const a = act.act;
+
+    const [imgUrl, setImgUrl] = useState('');
+
+    useEffect(() => {
+        const getImg = async () => {
+            setImgUrl(await getImage("activity", a.images[0]));
+        }
+        getImg();
+    }, []);
+
+
+
     return(
         <div className="card">
-            <div/>
+            <div className="card-title">
+                {a.name}
+            </div>
             <div className="card-text">
-                <div className="card-title">
-                    {a.name}
-                </div>
                 <div className="card-info">
-                    hiiii
+                    <div className="card-text">
+                        Difficulty: {a.difficultyRating},
+                        Safety: {a.safetyRating},
+                        Enjoyment: {a.enjoymentRating}
+                    </div>
                 </div>
+            </div>
+            <div className="card-img-container">
+                <img className="card-image" src={imgUrl}/>
             </div>
         </div>
     );

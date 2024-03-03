@@ -2,13 +2,14 @@
 
 .search-page {
     max-width: 100vw;
-    max-height: 100vh;
+    height: 100vh;
 }
 
 .inner-search {
     display: flex;
     flex-direction: row;
     max-width: 100vw;
+    max-height: 90vh;
 }
 
 .no-activities {
@@ -23,6 +24,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 2vh;
+    padding-bottom: 2vh;
+    overflow-y: auto;
+    max-width: 90vw;
+}
+
+.act-container {
+    max-width: 90vw;
     padding-bottom: 2vh;
 }

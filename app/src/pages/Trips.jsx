@@ -1,16 +1,104 @@
-import './../resources/styles/pages/Home.css';
-import { getUsers } from '../firebase'
+import React, { useEffect, useState } from 'react';
+import './../resources/styles/components/Activity.css';
+import './../resources/styles/pages/Trips.css';
+import { getTripsByUserId, getUserById, getImage } from '../firebase'
+
+function dateToString(timestamp) {
+  const date = timestamp.toDate();
+  const options = { month: 'long', day: 'numeric', year: 'numeric' };
+  return date.toLocaleString(undefined, options);
+}
 
 function Trips() {
-  getUsers();
+  const userId = "Wv4ozXlaxEVRrgPYUvQ65YJAhyl1";
+
+  const [invitedTrips, setInvitedTrips] = useState([]);
+  const [acceptedTrips, setAcceptedTrips] = useState([]);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+        try {
+          const invited = await getTripsByUserId("invitees", userId);
+          const accepted = await getTripsByUserId("accepted", userId);
+
+          const invitedPromises = invited.map(async (trip) => {
+            const organizerDetails = await getUserById(trip.organizer);
+            const profileImage = await getImage("profile", trip.organizer);
+  
+            return {
+              ...trip,
+              organizerDetails,
+              profileImage,
+            };
+          });
+  
+          const acceptedPromises = accepted.map(async (trip) => {
+            const organizerDetails = await getUserById(trip.organizer);
+            const profileImage = await getImage("profile", trip.organizer);
+  
+            return {
+              ...trip,
+              organizerDetails,
+              profileImage,
+            };
+          });
+  
+          const invitedTripsWithData = await Promise.all(invitedPromises);
+          const acceptedTripsWithData = await Promise.all(acceptedPromises);
+        
+          setInvitedTrips(invitedTripsWithData);
+          setAcceptedTrips(acceptedTripsWithData);
+
+        } catch (error) {
+            console.error('Error fetching user data:', error.message);
+        }
+    };
+    fetchUserData();
+}, []);
+
+  
   return (
-    <div className="Trips">
-      <header className="Home-header">
-        <p>
-          trips page
-        </p>
-      </header>
-      <div></div>
+    <div>
+      <h1>Trips</h1>
+      <h2>Invitations</h2>
+      {/* create cards for each trip in invitedTrips here */}
+      {invitedTrips.map((trip, index) => (
+        <div className="card" key={index}>
+          <div />
+          <div className="card-text">
+            <div className="card-title">
+              {trip.name}
+            </div>
+            <div className="card-info">
+              <img src={trip.profileImage} className="profile-pic-thumbnail" alt="Profile Thumbnail" />
+              <p>{`${trip.organizerDetails.firstName} ${trip.organizerDetails.lastName}`}</p>
+              <p>+{trip.invitees.length - 1}</p>
+              <p>{dateToString(trip.date)}</p>
+              <button className="decline-button">decline</button>
+              <button className="accept-button">accept</button>
+            </div>
+          </div>
+        </div>
+      ))}
+
+      <h2>Accepted</h2>
+      {/* create cards for each trip in acceptedTrips here */}
+      {acceptedTrips.map((trip, index) => (
+        <div className="card" key={index}>
+          <div />
+          <div className="card-text">
+            <div className="card-title">
+              {trip.name}
+            </div>
+            <div className="card-info">
+              <img src={trip.profileImage} className="profile-pic-thumbnail" alt="Profile Thumbnail" />
+              <p>{`${trip.organizerDetails.firstName} ${trip.organizerDetails.lastName}`}</p>
+              <p>{dateToString(trip.date)}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+
     </div>
   );
 }
