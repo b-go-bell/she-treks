@@ -66,7 +66,7 @@ function Trips() {
       invitedTrips.map((t) => (
         invites.push(
         <div className="trips-list">
-          <Trip tri={t}/>
+          <Trip tri={t} u={userId}/>
         </div>
       )));
     }
@@ -86,7 +86,7 @@ function Trips() {
       acceptedTrips.map((t) => (
         accepts.push(
         <div className="trips-list">
-          <Trip tri={t}/>
+          <Trip tri={t} u={userId}/>
         </div>
       )));
     }

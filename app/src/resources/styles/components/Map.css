@@ -1,10 +1,10 @@
 @import "./../../design-tokens/css-variables.scss";
 
 .map-container {
-    min-width: 60vw;
-    height: 84vh;
+    min-width: 62vw;
+    height: 86vh;
     border-radius: 0.5em;
-    padding: calc(10px + 0.1vw + 0.1vh);
+    margin-right: calc(20px + 0.5vw);
     background-color: var(--color-cream);
 }
 

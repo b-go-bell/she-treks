@@ -23,7 +23,7 @@
     font-size: var(--font-size-nav-page);
     font-family: var(--font-family);
     font-style: bold;
-    padding: calc(15px + 0.5vw);
+    padding: calc(20px + 0.5vw);
     text-decoration: none;
     color: var(--color-purple);
 }

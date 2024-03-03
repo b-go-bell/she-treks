@@ -9,7 +9,6 @@ function NavBar() {
             <Link to="/" className="site-title">SheTreks</Link>
         </div>
         <div>
-          <Link to="/" className="site-nav">Home</Link>
           <Link to="/search" className="site-nav">Search</Link>
           <Link to="/trips" className="site-nav">Trips</Link>
           <Link to="/profile" className="site-nav">Profile</Link>

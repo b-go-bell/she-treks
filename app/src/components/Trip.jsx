@@ -1,15 +1,19 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './../resources/styles/components/Activity.css';
-import { getImage } from './../firebase'
+import { updateTripMembers } from './../firebase'
 
 
-function Trip(tri) {
+function Trip(tri, userId) {
     const t = tri.tri;
 
     function dateToString(timestamp) {
         const date = timestamp.toDate();
         const options = { month: 'long', day: 'numeric', year: 'numeric' };
         return date.toLocaleString(undefined, options);
+    }
+
+    function accept() {
+      await updateTripMembers(t.id, userId, 'accept');
     }
 
     return(
@@ -25,7 +29,7 @@ function Trip(tri) {
             <p>{dateToString(t.date)}</p>
           </div>
           <div className="trip-buttons-container">
-            <button className="decline-button">decline</button>
+            <button className="decline-button" onClick={}>decline</button>
             <button className="accept-button">accept</button>
           </div>
 
