@@ -10,13 +10,15 @@ import {
   Route,
 } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+import LoginSignup from './pages/LoginSignup.jsx';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<LoginSignup />} />
+      <Route path="/home" element={<Home />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/search" element={<Search />} />
     </Routes>

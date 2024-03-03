@@ -107,20 +107,47 @@ export async function setProfileImage(userId, file) {
 
 
 /**
- * Retrieves the download URL for the user's profile image.
+ * Retrieves the download URL for a profile or post image.
  *
- * @param {string} userId - The unique identifier of the user.
- * @returns {Promise<string>} A Promise that resolves to the download URL of the user's profile image.
- * @throws {Error} Throws an error if there is an issue getting the profile image.
+ * @param {string} imgID - The unique identifier of the image: userID for profile pic, postID for post pic
+ * @returns {Promise<string>} A Promise that resolves to the download URL of the desired image.
+ * @throws {Error} Throws an error if there is an issue getting the desired image.
  */
-export async function getProfileImage(userId) {
+export async function getImage(type, imgID) {
   try {
-    const storageRef = ref(storage, `profile_images/${userId}`);
+    const folder = (type === "profile") ? "profile_images" : "post_images";
+    const storageRef = ref(storage, `${folder}/${imgID}`);
     const url = await getDownloadURL(storageRef);
     return url;
 
   } catch (error) {
-    throw new Error('Error getting profile image in getProfileImage' + error.message);
+    throw new Error('Error getting image in getImage' + error.message);
   }
 }
 
+
+/**
+ * Retrieves posts by the specified user's ID from the "posts" collection.
+ *
+ * @param {string} userId - The unique identifier of the user.
+ * @returns {Promise<Array<Object>>} A Promise that resolves to an array of objects representing the user's posts.
+ * @throws {Error} Throws an error if there is an issue retrieving the posts or if the user is not found.
+ */
+export async function getPostsByUserId(userId) {
+  try {
+    // Retrieve posts from the "posts" collection where the author field matches the provided user ID
+    const postsCollection = db.collection('posts');
+    const postsQuery = await postsCollection.where('author', '==', userId).get();
+
+    // Check if the user has any posts
+    if (postsQuery.empty) {
+      throw new Error('No posts found for the specified user.');
+    }
+
+    // Extract and return the posts data
+    const postsData = postsQuery.docs.map(postDoc => postDoc.data());
+    return postsData;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}

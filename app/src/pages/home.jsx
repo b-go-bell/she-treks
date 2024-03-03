@@ -1,11 +1,11 @@
-import './../resources/styles/pages/App.css';
+import './../resources/styles/pages/Home.css';
 import { getUsers } from '../firebase'
 
-function App() {
+function Home() {
   getUsers();
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="Home">
+      <header className="Home-header">
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -18,8 +18,9 @@ function App() {
           Learn React
         </a>
       </header>
+      <div></div>
     </div>
   );
 }
 
-export default App;
+export default Home;

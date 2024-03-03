@@ -1,0 +1,32 @@
+.AccountInfoInput{
+    width: 100%;
+    height: 100%;
+    position: sticky;
+    background-color: var(--color-cream); /* Adjust as needed */
+    color: var(--color-purple); /* Adjust text color as needed */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    font: var(--font-size-input);
+    font-size: var(--font-form-size);
+}
+
+.button {
+    margin: 20px 0;
+    background-color: var(--color-purple);
+    color: var(--color-cream);
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.label {
+    align-items: left;
+    font-size: var(--font-size-input);
+}
+
+.Names {
+    display: flex;
+}

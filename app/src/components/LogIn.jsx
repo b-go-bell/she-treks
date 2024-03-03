@@ -1,10 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import './../resources/styles/components/LogInSignUpComponents.css';
+import firebase from 'firebase/compat/app';
+import 'firebase/auth';
 
-
-export default function LoginPage() {
-  const [localUser, setLocal] = useState<UserInfoType | null>(null);
+export const LogInPage = (handleCancel, switchToSignUp) =>{
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,6 +36,17 @@ export default function LoginPage() {
             console.error("Login error:", errorCode, errorMessage);
         });
   };
+  const handleGoogleSignIn = async () => {
+    try {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      await firebase.auth().signInWithPopup(provider);
+      console.log('User signed in with Google successfully!');
+      // Redirect or perform any other action after sign-in
+    } catch (error) {
+        toast.error("Google sign in erred.");
+      console.error('Error signing in with Google:', error);
+    }
+  };
 
   return (
     /* Login */
@@ -42,14 +54,6 @@ export default function LoginPage() {
       <ToastContainer />
       {/* Login Frame */}
       <div className="flex flex-col items-center gap-[20px]">
-        {/* Image Section */}
-        <Image
-          src="/logo-color.svg"
-          width={120}
-          height={80}
-          alt="logo"
-          className="mt-[0px] w-[173px] h-[79px]"
-        />
         {/* Login Content */}
         <div>
           <div className="PageHeader">
@@ -57,12 +61,9 @@ export default function LoginPage() {
               <div className="Link">
                 <div>
                   Don’t have an account?{" "}
-                  <a
-                    href="/signup"
-                    className="underline"
-                  >
-                    Create an account
-                  </a>
+                  <button className="button" onClick={switchToSignup}>
+                    Sign Up
+                  </button>
                 </div>
               </div>
           <div/>
@@ -76,11 +77,6 @@ export default function LoginPage() {
                     className="TextInput"
                     placeholder="Enter your email"
                     value={email}
-                    style={{
-                      fontWeight: 400,
-                      lineHeight: "normal",
-                      paddingLeft: "13.35px",
-                    }}
                     onChange={(e) => setEmail(e.target.value)}
                   ></input>
                 </div>
@@ -92,11 +88,6 @@ export default function LoginPage() {
                     className="TextInput"
                     placeholder="Enter your password"
                     value={password}
-                    style={{
-                      fontWeight: 400,
-                      lineHeight: "normal",
-                      paddingLeft: "13.35px",
-                    }}
                     type={show ? "text" : "password"}
                     onChange={(e) => setPassword(e.target.value)}
                   ></input>
@@ -107,14 +98,8 @@ export default function LoginPage() {
                   />
                 </div>
               </div>
-              <button
-                id="#login-button"
-                onClick={handleLogin}
-              >
-                <span>
-                  Log In
-                </span>
-              </button>
+              <button className="button" onClick={handleLogin}>Sign In with Email/Password</button>
+             <button className="button" onClick={handleGoogleSignIn}>Sign In with Google</button>
             </div>
           </div>
         </div>

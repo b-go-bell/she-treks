@@ -1,0 +1,24 @@
+/* @import url("css-variables.scss") */
+.navbar {
+    width: 100%;
+    height: 10%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--color-cream); /* Adjust as needed */
+    color: var(--color-purple); /* Adjust text color as needed */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px; /* Adjust padding as needed */
+}
+
+.site-title {
+    position: fixed;
+    top : 20;
+    left: 20;
+    background-color: var(--color-cream);
+    color: var(--color-purple);
+    font: var(--font-header);
+    font-size: var(--font-size-site-title);
+}
