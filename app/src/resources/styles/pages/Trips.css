@@ -1,3 +1,5 @@
+@import "./../../design-tokens/css-variables.scss";
+
 .profile-pic-thumbnail {
     width: 30px; /* Set the desired width for the image */
     height: 30px; /* Set the desired height for the image */
@@ -5,34 +7,43 @@
     margin-right: 10px; /* Adjust the margin for spacing between image and text */
 }
 
-/* Button styling */
-button {
-    cursor: pointer;
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* Accept button styling */
-  .accept-button {
-    background-color: #93FFA4; /* Green */
-    color: white;
-  }
-  
-  .accept-button:hover {
-    background-color: #45a049; /* Darker green on hover */
-  }
-  
-  /* Decline button styling */
-  .decline-button {
-    background-color: #F98080; /* Red */
-    color: white;
-  }
-  
-  .decline-button:hover {
-    background-color: #d32f2f; /* Darker red on hover */
-  }
+.trips-container {
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--color-cream);
+}
+
+.trips-content {
+  max-height: 90vh;
+  overflow-y: auto;
+  background-color: var(--color-cream);
+}
+
+.trips-h1 {
+  font-size: var(--font-size-page-title);
+  font-family: var(--font-family);
+  color: var(--color-gray);
+  margin-left: 3vw;
+}
+
+.trips-h2 {
+  font-size: var(--font-size-nav-title);
+  font-family: var(--font-family);
+  color: var(--color-gray);
+  margin-left: 3.5vw;
+  margin-bottom: 1vh;
+}
+
+.trips-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 1vw;
+}
+
+.cards-section {
+  display: flex;
+  flex-direction: row;
+  margin-left: 4vw;
+}
+

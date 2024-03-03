@@ -5,8 +5,9 @@
     height: 84vh;
     border-radius: 0.5em;
     padding: calc(10px + 0.1vw + 0.1vh);
-    padding-top: calc(10px + 0.1vw + 0.1vh)
+    background-color: var(--color-cream);
 }
+
 
 .marker {
     width: 15px;

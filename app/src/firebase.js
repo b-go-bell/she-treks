@@ -3,13 +3,13 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import 'firebase/compat/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDNK9F0zKZBLyJgKtHaRENnAaZXD0Y0aKo",
-    authDomain: "shetreks-app.firebaseapp.com",
-    projectId: "shetreks-app",
-    storageBucket: "shetreks-app.appspot.com",
-    messagingSenderId: "456150020543",
-    appId: "1:456150020543:web:9fcb050f46576c2a4c710a"
-}
+  apiKey: "AIzaSyDfeBh0k8maLZhShHaxeZi2w91dYJtx8AE",
+  authDomain: "she-treks-app.firebaseapp.com",
+  projectId: "she-treks-app",
+  storageBucket: "she-treks-app.appspot.com",
+  messagingSenderId: "651102088389",
+  appId: "1:651102088389:web:df3d889b5e7c72610654ac"
+};
 
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
@@ -217,5 +217,47 @@ export async function getTripsByUserId(tripStatus, userId) {
     return tripsData;
   } catch (error) {
     throw new Error(error.message);
+  }
+}
+
+
+/**
+ * Updates the invitees, accepted, or declined arrays in a trip document based on a user's action.
+ *
+ * @param {string} tripId - The ID of the trip document.
+ * @param {string} userId - The ID of the user performing the action.
+ * @param {string} action - The action to perform ('accept' or 'decline').
+ * @throws Will throw an error if the trip document is not found or if an invalid action is provided.
+ */
+export async function updateTripMembers(tripId, userId, action) {
+  try {
+    const tripRef = db.collection('trips').doc(tripId);
+    
+    // Use Firestore transaction to ensure atomic updates
+    await db.runTransaction(async (transaction) => {
+      const tripDoc = await transaction.get(tripRef);
+
+      if (!tripDoc.exists) {
+        throw new Error('Trip not found.');
+      }
+
+      // Update the invitees array based on the user's action
+      if (action === 'accept') {
+        transaction.update(tripRef, {
+          invitees: firebase.firestore.FieldValue.arrayRemove(userId),
+          accepted: firebase.firestore.FieldValue.arrayUnion(userId),
+        });
+      } else if (action === 'decline') {
+        transaction.update(tripRef, {
+          invitees: firebase.firestore.FieldValue.arrayRemove(userId),
+          declined: firebase.firestore.FieldValue.arrayUnion(userId),
+        });
+      } 
+    });
+
+    console.log('Trip members updated successfully.');
+  } catch (error) {
+    console.error('Error updating trip members:', error.message);
+    throw new Error('Error updating trip members.');
   }
 }

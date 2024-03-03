@@ -54,11 +54,13 @@ function Map({updateTrailList}) {
         const promise = await getTrails(map.current.getBounds());
         setTrails(promise);
         updateTrailList(promise);
+
     }, [lat, lng, zoom])
 
     useEffect(() => {
         updateTrails();
-    }, [updateTrails]);
+
+    }, [lat, lng, zoom]);
 
     useEffect(() => {
         console.log(trails);

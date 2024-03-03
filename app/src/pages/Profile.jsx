@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 function Profile() {
-    const userId = "Wv4ozXlaxEVRrgPYUvQ65YJAhyl1";
+    const userId = "uFHGRa7deaMg9Azg9Aq5QKujMEJ2";
 
     const [user, setUser] = useState();
     const [profileImageUrl, setProfileImageUrl] = useState();

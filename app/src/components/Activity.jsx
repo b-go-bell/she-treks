@@ -12,6 +12,7 @@ function Activity(act) {
             setImgUrl(await getImage("activity", a.images[0]));
         }
         getImg();
+
     }, []);
 
 
