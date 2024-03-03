@@ -20,9 +20,6 @@ export async function getUsers() {
       console.log(documentSnapshot.data());
     });
   });
-  // console.log(col);
-  // console.log(col.id);
-
 }
 
 
