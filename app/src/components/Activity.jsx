@@ -2,10 +2,18 @@ import React, { useRef, useEffect, useState } from 'react';
 import './../resources/styles/components/Activity.css';
 
 function Activity(act) {
-    console.log(act);
+    const a = act.act;
     return(
         <div className="card">
-            Hiiii
+            <div/>
+            <div className="card-text">
+                <div className="card-title">
+                    {a.name}
+                </div>
+                <div className="card-info">
+                    hiiii
+                </div>
+            </div>
         </div>
     );
 }

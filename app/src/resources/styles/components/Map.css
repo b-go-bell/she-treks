@@ -1,3 +1,5 @@
+@import "./../../design-tokens/css-variables.scss";
+
 .map-container {
     width: 65vw;
     height: 100vh;
@@ -9,3 +11,12 @@
     background-size: cover; /* Ensure the image covers the entire div */
     background-position: center; /* Center the image */
 }
+
+.mapboxgl-ctrl-top-right .mapboxgl-ctrl-group > button {
+    background-color: var(--color-cream); /* Set your desired background color */
+}
+
+.mapboxgl-ctrl-top-left .mapboxgl-ctrl-geocoder.mapboxgl-ctrl > input {
+    background-color: var(--color-cream); /* Set your desired background color */
+    border-radius: .5em;
+  }

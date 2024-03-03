@@ -1,6 +1,27 @@
+@import "./../../design-tokens/css-variables.scss";
+
 .card {
     display: flex;
     width: 30vw;
-    height: 15vh;
-    background-color: red;
+    height: 25vh;
+    background-color: var(--color-cream);
+    border: solid var(--color-gray);
+    border-width: 2px;
+    border-radius: .5em;
+}
+
+.card-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: var(--font-size-card-title);
+    font-family: var(--font-header);
+    font-weight: 600;
+}
+
+.card-info {
+    font-size: var(--font-size-card-info);
+    font-family: var(--font-body);
 }

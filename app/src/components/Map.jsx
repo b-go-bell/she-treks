@@ -36,6 +36,8 @@ function Map({updateTrailList}) {
             setZoom(map.current.getZoom().toFixed(2));
         });
 
+
+
         map.current.addControl(new mapboxgl.NavigationControl());
 
         map.current.addControl(new MapboxGeocoder({
@@ -59,9 +61,11 @@ function Map({updateTrailList}) {
     }, [updateTrails]);
 
     useEffect(() => {
+        console.log(trails);
         trails.forEach((trail) => {
 
             let coords = [];
+            console.log(trail);
             trail.trailCoordinates.forEach((geopoint) => {
                 const lnglat = [geopoint._long, geopoint._lat];
                 coords.push(lnglat);
@@ -76,7 +80,7 @@ function Map({updateTrailList}) {
                     .setPopup(new mapboxgl.Popup().setHTML(`<p>Marker ${1}</p>`));
 
             map.current.on('load', () => {
-                map.current.addSource('path', {
+                map.current.addSource(trail.id, {
                 type: 'geojson',
                 data: {
                     type: 'Feature',
@@ -89,9 +93,9 @@ function Map({updateTrailList}) {
             });
 
             map.current.addLayer({
-                id: 'path',
+                id: trail.id,
                 type: 'line',
-                source: 'path',
+                source: trail.id,
                 layout: {
                     'line-join': 'round',
                     'line-cap': 'round',
