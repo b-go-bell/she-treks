@@ -1,0 +1,61 @@
+.container {
+  font: var(font-regular);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  color: var(--color-purple);
+  font: var(font-header);
+}
+
+.header p {
+  color: var(--color-purple);
+  font: var(font-regular);
+}
+
+.button {
+  margin: 20px 0;
+}
+
+.login {
+  background-color: var(--color-purple);
+  color: var(--color-cream);
+  border: none;
+  padding: 10px 20px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.signup {
+  background-color: transparent;
+  color: var(--color-purple);
+  border: 2px solid var(--color-purple);
+  padding: 10px 20px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.background-with-gradient {
+    background-image: url('./../../media/she-treks-stock-home.jpeg');
+    background-size: cover; /* Ensure the background image covers the entire element */
+    position: relative; /* Required for absolute positioning of the gradient layer */
+}
+  
+.gradient-overlay {
+    /* Position the gradient layer */
+    width: 50%;
+    position: absolute;
+    top: 0;
+    right: auto;
+    bottom: 0;
+    left: 0;
+
+    /* Set the background to a linear gradient from white to transparent */
+    background: linear-gradient(to right, var(--color-cream), rgba(255, 255, 255, 0));
+}
+
+/* .photo1 { background-image: url('/path-to-your-image-1.jpg'); } */

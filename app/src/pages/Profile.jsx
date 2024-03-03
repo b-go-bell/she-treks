@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import './../resources/styles/pages/App.css';
 import './../resources/styles/pages/Profile.css';
 import { getProfileImage, getUserById, setProfileImage } from '../firebase'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
-function App() {
+function Profile() {
     const [user, setUser] = useState();
     const [profileImageUrl, setProfileImageUrl] = useState(null);
 
@@ -77,4 +76,4 @@ function App() {
     );
     }
 
-    export default App;
+    export default Profile;
