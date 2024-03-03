@@ -78,8 +78,12 @@ body, html {
 }
 
 .header {
-  text-align: center;
-  color: var(--color-cream);
+  text-align: left;
+  color: var(--color-purple);
+  padding: 20px 20px;
+  margin: 20 10px;
+  position: absolute;
+  z-index: 9999;
 }
 
 .header h1 {
@@ -91,13 +95,15 @@ body, html {
   font-size: var(--font-form-size);
 }
 
-.button {
-  display: flex;
-  justify-content: center;
+.button-container {
+  display: inline-flex;
+  justify-content: left;
   margin-top: 20px;
+  position: absolute;
+  z-index: 9999;
 }
 
-.button .login, .button .signup {
+.login, .signup {
   font-family: var(--font-regular);
   font-size: var(--font-form-size);
   padding: 10px 20px;
@@ -108,23 +114,23 @@ body, html {
   transition: background-color 0.3s;
 }
 
-.button .login {
+.login {
   background-color: transparent;
   color: var(--color-purple);
   border: 1px solid var(--color-purple);
 }
 
-.button .signup {
+.signup {
   background-color: var(--color-purple);
   color: var(--color-cream);
 }
 
-.button .login:hover {
+.login:hover {
   background-color: var(--color-purple);
   color: var(--color-cream);
 }
 
-.button .signup:hover {
+.signup:hover {
   background-color: transparent;
   color: var(--color-purple);
   border: 1px solid var(--color-cream);
@@ -137,15 +143,18 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+  /* background: linear-gradient(to right, rgba(0,0,0,0.3), rgba(0,0,0,0.7)); */
 }
 
 .gradient-overlay {
-  /* Additional overlay if needed */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.1); /* Light cream overlay */
+    
+    width: 50%;
+    position: absolute;
+    top: 0;
+    right: auto;
+    bottom: 0;
+    left: 0;
+
+    
+    background: linear-gradient(to right, var(--color-cream), rgba(255, 255, 255, 0));
 }
