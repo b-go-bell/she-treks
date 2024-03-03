@@ -41,8 +41,9 @@ export const SignUpPage = ({handleCancel, switchToLogin}) => {
         return;
       }
       // Create user with email and password
+      console.log("attempt to add user: ", form.email);
       const response = createUser(form.email, form.password, form.firstName, form.lastName);
-    console.log('User added to Firestore successfully!');
+    console.log('User added to Firestore successfully!', reponse);
     nav('/profile');
 
     } catch (error) {

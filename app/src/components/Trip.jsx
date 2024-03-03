@@ -1,4 +1,3 @@
-import React, { useRef, useEffect, useState } from 'react';
 import './../resources/styles/components/Activity.css';
 import { useNavigate } from "react-router-dom";
 
@@ -15,20 +14,18 @@ function Trip(tri) {
     const navigate = useNavigate();
 
     function viewTrip() {
-      console.log(tri);
+      console.log("viewTrip for trip with id =" + t.tripId);
       navigate(`/trips/${t.name}`);
     }
 
     return(
-        <div className="card" onClick={viewTrip}>
+        <div className="card" id={t.tripId} onClick={viewTrip}>
         <div className="card-text">
           <div className="card-title">
             {t.name}
           </div>
           <div className="card-info">
-            {/* <img src={t.profileImage} className="profile-pic-thumbnail" alt="Profile Thumbnail" /> */}
             <p>Organized by {`${t.organizerDetails.firstName} ${t.organizerDetails.lastName}`}</p>
-            {/* <p>+{t.invitees.length - 1}</p> */}
             <p>{dateToString(t.date)}</p>
           </div>
           <div className="trip-buttons-container">
