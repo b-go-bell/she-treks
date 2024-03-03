@@ -1,7 +1,7 @@
 @import "./../../design-tokens/css-variables.scss";
 
 /* .container {
-  font: var(font-regular);
+  font: var(font-family);
 }
 
 .header {
@@ -11,12 +11,12 @@
 
 .header h1 {
   color: var(--color-purple);
-  font: var(font-header);
+  font: var(font-family);
 }
 
 .header p {
   color: var(--color-purple);
-  font: var(font-regular);
+  font: var(font-family);
 }
 
 .button {
@@ -64,7 +64,7 @@
 body, html {
   margin: 0;
   padding: 0;
-  font-family: var(--font-regular);
+  font-family: var(--font-family);
 }
 
 
@@ -91,13 +91,14 @@ body, html {
 
 .header .siteTitleL {
   font-size: var(--font-size-site-title);
-  font-family: var(--font-header);
+  font-family: var(--font-family);
   margin-top: 200px;
 }
 
 .header p {
-  font-family: var(--font-regular);
+  font-family: var(--font-family);
   font-size: var(--font-size-page-title);
+  font-style: italic;
   margin-top: 10px;
   margin-left: 10px;
 }
@@ -114,7 +115,7 @@ body, html {
 }
 
 .login, .signup {
-  font-family: var(--font-regular);
+  font-family: var(--font-family);
   font-size: var(--font-size-button);
   padding: 10px 30px;
   margin: 0px 20px;

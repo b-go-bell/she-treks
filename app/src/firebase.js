@@ -11,7 +11,7 @@ const firebaseConfig = {
     appId: "1:456150020543:web:9fcb050f46576c2a4c710a"
 }
 
-firebase.initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const storage = getStorage();
 
@@ -22,6 +22,41 @@ export async function getUsers() {
       console.log(documentSnapshot.data());
     });
   });
+}
+
+export async function createUser({email, password, firstName, lastName}) {
+  try{
+    const userCredential = await firebase.auth(app).createUserWithEmailAndPassword(email, password);
+    const userId = userCredential.user.uid;
+    // Log sign-up event
+    firebase.analytics().logEvent('sign_up', { method: 'email' });
+
+    console.log('User signed up successfully!');
+
+    const usersCollection = firebase.firestore().collection('users');
+    await usersCollection.doc(userId).set({
+      email: email,
+      firstName : firstName,
+      lastName : lastName,
+    });
+  } catch (error) {
+    console.error('Error signing up:', error);
+  }
+}
+
+export async function authUser({email, password}) {
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+        // User successfully logged in
+        const user = userCredential.user;
+        console.log("User logged in:", user);
+    })
+    .catch((error) => {
+        // Handle errors
+        return false;
+        console.error("Login error at firebase level");
+    });
+  return true;
 }
 
 export async function getTrails(bounds) {
