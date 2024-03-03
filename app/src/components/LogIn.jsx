@@ -11,11 +11,11 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [icon, setIcon] = useState("/password-see.svg");
+  const [icon, setIcon] = useState("./../resources/media/password-see.svg");
 
   const handleShow = () => {
     setShow(!show);
-    setIcon(show ? "/password-see.svg" : "/password-hide.svg");
+    setIcon(show ? "./../resources/media/password-see.svg" : "./../resources/media/password-hide.svg");
   };
 
   const handleLogin = async () => {
@@ -32,6 +32,7 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
         })
         .catch((error) => {
             // Handle errors
+            toast.error("Enter a valid email and password.");
             const errorCode = error.code;
             const errorMessage = error.message;
             console.error("Login error:", errorCode, errorMessage);
@@ -56,9 +57,12 @@ export const LogInPage = ({handleCancel, switchToSignUp}) =>{
     <div className="LogInComponent">
       <ToastContainer />
       {/* Login Frame */}
-      <div className="flex flex-col items-center gap-[20px]">
+      <div>
         {/* Login Content */}
-        <div>
+        <header className="header">
+            <div className="siteTitle">SheTreks</div>
+        </header>
+        <div className="LogInContainer">
           <div className="PageHeader">
             Log In
               <div className="Link">
