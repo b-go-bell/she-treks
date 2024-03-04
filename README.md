@@ -3,7 +3,11 @@
 ### [@arianagoldstein](https://github.com/arianagoldstein) | [@b-go-bell](https://github.com/b-go-bell) | [@elandrum](https://github.com/elandrum)
 
 
-SheTreks is a web application designed to connect female outdoor enthusiasts, allowing them to organize and join group trips, fostering a sense of community and empowering women to participate in outdoor adventures in a way that is tailored to their comfort level.
+SheTreks is a website designed to connect woman-identifying outdoor enthusiasts to plan group trips, build community, and commemorate their outdoor adventures.
+
+ [Video Demo Link](https://youtu.be/dXe0no_Ch0I?si=HEYoNb13aTuTAhVW)
+
+ [Devpost Link](https://devpost.com/software/shetreks)
 
 
 ## Table of Contents
@@ -23,6 +27,7 @@ SheTreks is a web application designed to connect female outdoor enthusiasts, al
 
 - **Frontend**: React, Node.js
 - **Backend**: Firebase (Authentication, Firestore, Storage)
+- **APIs**: Mapbox
 
 ## Getting Started
 
